@@ -16,7 +16,25 @@
     <div class="container rounded d-flex justify-content-between">
       <div class="container-form">
         <h2 class="form-title mb-4">Sign In</h2>
-        <form action="registration.php" method="post">
+        <?php
+          if (isset($_POST['submit'])) {
+            $email = isset($_POST['email']) ? $_POST['email'] : '';
+            $password = isset($_POST['password']) ? $_POST['password'] : '';
+
+            require_once "../connDB.php"; // Check the path here
+            require_once "../controller/control.php"; // Check the path here
+            $sql = new control(); // Make sure control class is defined
+            $result = $sql->c_signIn($email, $password);
+            if ($result == 'failed') {
+              echo "<div class='alert alert-danger' role='alert'>Sign in failed</div>";
+            } else {
+              session_start();
+              $_SESSION['userId'] = $result;
+              header("Location: index.php");
+            }
+          }
+        ?>
+        <form action="signin.php" method="post">
           
           <div class="form-group">
             <div class="form-label">Email</div>
