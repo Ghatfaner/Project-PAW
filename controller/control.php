@@ -15,8 +15,8 @@
       include_once "../view/registration.php";
     }
 
-    public function c_singIn($identifier, $password) {
-      return $this->model->m_signIn($identifier, $password);
+    public function c_singIn($email, $password) {
+      return $this->model->m_signIn($email, $password);
       include_once "../view/index.php";
     }
 
