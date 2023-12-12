@@ -12,7 +12,7 @@
 
     public function c_signUp($username, $email, $password, $address, $phoneNumber, $occupation) {
       return $this->model->m_signUp($username, $email, $password, $address, $phoneNumber, $occupation);
-      include_once "../view/registration.php";
+      include_once "../view/login.php";
     }
 
     public function c_signIn($email, $password) {

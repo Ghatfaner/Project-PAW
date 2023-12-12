@@ -36,7 +36,7 @@
       if ($userExist['output'] == 1) {
         $query = $this->database->query("SELECT UserId
                                 FROM user
-                                WHERE (Username = '$identifier' OR Email = '$identifier')
+                                WHERE (Username = '$email' OR Email = '$email')
                                 AND Password = '$password'; ");
         $userID = $query->fetch_assoc();           
         return $userID['UserId'];
