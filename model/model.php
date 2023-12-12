@@ -95,13 +95,12 @@
     }
 
     public function detailMovie($movieID) {
-      return $this->database->query("SELECT MovieId, CompaniesName, 
-                                            DirectorName, GenreName, Title, 
-                                            ReleaseDate, Duration, Synopsis, 
-                                            AgeRating, Stock, price, 
-                                            (select ActorName
-                                             natural join Casting
-                                             where Casting.MovieId = '$movieID') as actor
+      return $this->database->query("SELECT MovieId, CompaniesName, DirectorName, 
+                                            GenreName, Title, ReleaseDate, 
+                                            Duration, Synopsis, AgeRating, 
+                                            Stock, price, (select ActorName
+                                                           natural join Casting
+                                                           where Casting.MovieId = '$movieID') as actor
                                     from movie
                                     natural join genre
                                     natural join director
@@ -118,12 +117,59 @@
     }
 
     public function sortAscending() {
-      return $this->database->query("SELECT Title, year(ReleaseDate) as year, AgeRating, Synopsis
+      return $this->database->query("SELECT Title, year(ReleaseDate) as year, AgeRating, Synopsis, Price
                                      from movie
                                      order by Title;");
     }
 
-  
+    public function sortDescending() {
+      return $this->database->query("SELECT Title, year(ReleaseDate) as year, AgeRating, Synopsis, Price
+                                     from movie
+                                     order by Title desc;");
+    }
+
+    public function sortLowerPrice() {
+      return $this->database->query("SELECT Title, year(ReleaseDate) as year, AgeRating, Synopsis, Price
+                                     from movie
+                                     order by price;");
+    }
+
+    public function sortHigherPrice() {
+      return $this->database->query("SELECT Title, year(ReleaseDate) as year, AgeRating, Synopsis, Price
+                                     from movie
+                                     order by price desc;");
+    }
+
+    public function sortAgeRating() {
+      return $this->database->query("SELECT Title, year(ReleaseDate) as year, AgeRating, Synopsis, Price
+                                     from movie
+                                     order by AgeRating;"); 
+    }
+
+    public function sortOldest() {
+      return $this->database->query("SELECT Title, year(ReleaseDate) as year, AgeRating, Synopsis, Price
+                                     from movie
+                                     order by ReleaseDate;"); 
+    }
+
+    public function sortNewest() {
+      return $this->database->query("SELECT Title, year(ReleaseDate) as year, AgeRating, Synopsis, Price
+                                     from movie
+                                     order by ReleaseDate desc;"); 
+    }
+
+    public function updateProfile($userId, $username, $email, $password, $address, $phoneNumber, $occupation) {
+      $this->database->query("UPDATE user
+                              set
+                                  Username = case when '$username' = '' then Username else '$username' end,
+                                  Email = case when '$email' = '' then Email else '$email' end,
+                                  Password = case when '$password' = '' then Password else '$password' end,
+                                  Address = case when '$address' = '' then Address else '$address' end,
+                                  PhoneNumber = case when '$phoneNumber' = '' then PhoneNumber else '$phoneNumber' end,
+                                  Occupation = case when '$occupation' = '' then Occupation else '$occupation' end
+                              where UserId = '$userId'; ");
+    }
+    
   }
 
 ?>
