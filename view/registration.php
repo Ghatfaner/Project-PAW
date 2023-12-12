@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +18,47 @@
     <div class="container rounded d-flex justify-content-between">
       <div class="container-form">
         <h2 class="form-title mb-4">Registration</h2>
-        <form action="registration.php" method="post">
+        <?php
+if (isset($_POST['submit'])) {
+    $username = isset($_POST['username']) ? $_POST['username'] : '';
+    $email = isset($_POST['email']) ? $_POST['email'] : '';
+    $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
+    
+    // Check if the "occupation" key exists before accessing it
+    $occupation = isset($_POST['occupation']) ? $_POST['occupation'] : '';
+    
+    $address = isset($_POST['address']) ? $_POST['address'] : '';
+    $password = isset($_POST['password']) ? $_POST['password'] : '';
+    $passwordConfirm = isset($_POST['passwordConfirm']) ? $_POST['passwordConfirm'] : '';
+
+    $errors = array();
+
+    if (strlen($password) < 8) {
+        array_push($errors, "The password must be at least 8 characters");
+    }
+    if ($password !== $passwordConfirm) {
+        array_push($errors, "The passwords do not match");
+    }
+
+    if (count($errors) > 0) {
+        foreach ($errors as $error) {
+            echo "<div class='alert alert-danger' role='alert'>$error</div>";
+        }
+    } else {
+        require_once "../connDB.php"; // Check the path here
+        require_once "../controller/control.php"; // Check the path here
+        $sql = new control(); // Make sure control class is defined
+        $result = $sql->c_signUp($username, $email, $password, $address, 
+        $phone, $occupation);
+        if ($result == 'success') {
+            echo "<div class='alert alert-success' role='alert'>Registration success</div>";
+        } else {
+            echo "<div class='alert alert-danger' role='alert'>Registration failed</div>";
+        }
+    }
+}
+?>
+        <form action="" method="post">
           <div class="form-group">
             <div class="form-label">Username</div>
             <input type="text" name="username" class="form-control rounded" placeholder="Write your username" required>
@@ -30,6 +72,10 @@
             <input type="tel" name="phone" class="form-control rounded" placeholder="Write your phone number" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}" required>
           </div>
           <div class="form-group">
+            <div class="form-label">Occupation</div>
+            <input type="text" name="occupation" class="form-control rounded" placeholder="Write your occupation" required>
+          </div>
+          <div class="form-group">
             <div class="form-label">Address</div>
             <textarea name="address" class="form-control rounded" placeholder="Write your address" rows="4" cols="30" required></textarea>
           </div>
@@ -39,7 +85,7 @@
           </div>
           <div class="form-group">
             <div class="form-label">Confirmation Password</div>
-            <input type="password" name="password" class="form-control rounded" placeholder="Write your password again" required>
+            <input type="password" name="passwordConfirm" class="form-control rounded" placeholder="Write your password again" required>
           </div>
           <div class="submit-button mt-5">
             <input type="submit" name="submit" class="btn btn-light btn-block" value="Register">

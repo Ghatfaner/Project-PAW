@@ -15,8 +15,9 @@
       $userExist = $this->database->query("SELECT count(*) 
                                            FROM user
                                            WHERE Username = '$username' OR Email = '$email';");
+      $userExist = $userExist->fetch_assoc();
 
-      if ($userExist = 0) {
+      if ($userExist['count(*)'] == 0) {
         $this->database->query("INSERT INTO user(username, email, password, address, phonenumber, occupation)
                                 VALUES ('$username', '$email', '$password', '$address', '$phoneNumber', '$occupation');");
         return 'success';
@@ -31,7 +32,7 @@
                                            WHERE (Username = '$identifier' OR Email = '$identifier')
                                            AND Password = '$password';");
 
-      if ($userExist = 1) {
+      if ($userExist == 1) {
         $userID = $this->database->query("SELECT UserId
                                 FROM user
                                 WHERE (Username = '$identifier' OR Email = '$identifier')
