@@ -26,10 +26,10 @@
       }
     }
 
-    public function m_signIn($identifier, $password) {
+    public function m_signIn($email, $password) {
       $query = $this->database->query("SELECT COUNT(*) as output
                                            FROM user
-                                           WHERE (Username = '$identifier' OR Email = '$identifier')
+                                           WHERE Email = '$email'
                                            AND Password = '$password';");
       $userExist = $query->fetch_assoc();
 
@@ -44,6 +44,83 @@
         return 'failed';
       }
       
+    }
+
+    public function popularAction() {
+      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName
+                                     from Movie
+                                     natural join Genre
+                                     where GenreName = 'action'
+                                     limit 4;");
+    }
+
+    public function popularComedy() {
+      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName
+                                     from Movie
+                                     natural join Genre
+                                     where GenreName = 'comedy'
+                                     limit 4;");
+    }
+
+    public function popularAnimation() {
+      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName
+                                     from Movie
+                                     natural join Genre
+                                     where GenreName = 'animation'
+                                     limit 4;");
+    }
+
+    public function popularHorror() {
+      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName
+                                     from Movie
+                                     natural join Genre
+                                     where GenreName = 'horror'
+                                     limit 4;");
+    }
+
+    public function popularScifi() {
+      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName
+                                     from Movie
+                                     natural join Genre
+                                     where GenreName = 'science fiction'
+                                     limit 4;");
+    }
+
+    public function popularDocumentary() {
+      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName
+                                     from Movie
+                                     natural join Genre
+                                     where GenreName = 'documentary'
+                                     limit 4;");
+    }
+
+    public function detailMovie($movieID) {
+      return $this->database->query("SELECT MovieId, CompaniesName, 
+                                            DirectorName, GenreName, Title, 
+                                            ReleaseDate, Duration, Synopsis, 
+                                            AgeRating, Stock, price, 
+                                            (select ActorName
+                                             natural join Casting
+                                             where Casting.MovieId = '$movieID') as actor
+                                    from movie
+                                    natural join genre
+                                    natural join director
+                                    natural join moviecompany
+                                    where MovieId = '$movieID'; ");
+    }
+
+    public function searchMovie($identifier) {
+      return $this->database->query("SELECT MovieId, Title, Duration, ReleaseDate, GenreName, Stock
+                                     from movie
+                                     natural join genre
+                                     where Title like concat('%', '$identifier', '%') or
+                                     GenreName like '$identifier'; ");
+    }
+
+    public function sortAscending() {
+      return $this->database->query("SELECT Title, year(ReleaseDate) as year, AgeRating, Synopsis
+                                     from movie
+                                     order by Title;");
     }
 
   
