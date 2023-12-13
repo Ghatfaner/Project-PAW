@@ -6,6 +6,9 @@
   <title>Search</title>
 </head>
 <body>
-  
+  <div>
+    <!-- search box -->
+    
+  </div>
 </body>
 </html>
