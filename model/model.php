@@ -95,14 +95,14 @@
                                      limit 4;");
     }
 
-    public function m_detailMovie($movieID) {
+    public function m_detailMovie($movieId) {
       return $this->database->query("SELECT MovieId, CompaniesName, 
                                             DirectorName, GenreName, Title, 
                                             ReleaseDate, Duration, Synopsis, 
                                             AgeRating, Stock, price, 
                                             (select ActorName
                                              natural join Casting
-                                             where Casting.MovieId = '$movieID') as actor
+                                             where Casting.MovieId = '$movieId') as actor
                                     from movie
                                     natural join genre
                                     natural join director
@@ -171,5 +171,71 @@
                                   Occupation = case when '$occupation' = '' then Occupation else '$occupation' end
                               where UserId = '$userId'; ");
     }
+
+    public function m_getProfile($userId) {
+      return $this->database->query("SELECT Username, Email, Password, Address, PhoneNumber, Occupation
+                                     from user
+                                     where UserId = '$userId'; ");
+    }
+
+    public function m_addBookmark($userId, $movieId) {
+      $this->database->query("INSERT INTO bookmark(UserId, MovieId)
+                              VALUES ('$userId', '$movieId'); ");
+    }
+
+    public function m_deleteBookmark($userId, $movieId) {
+      $this->database->query("DELETE from bookmark
+                              where UserId = '$userId'
+                              and MovieId = '$movieId'; ");
+    }
+
+    public function m_getBookmark($userId) {
+      return $this->database->query("SELECT Title, Duration, ReleaseDate, GenreName
+                                     from bookmark
+                                     join Movie on Movie.MovieId = bookmark.MovieId
+                                     join genre on Genre.GenreId = Movie.GenreId
+                                     where UserId = '$userId'; ");
+    }
+
+    public function m_addRating($userId, $movieId, $comment, $rating) {
+      $this->database->query("INSERT INTO rate(UserId, MovieId, Comment, Rating)
+                              VALUES ('$userId', '$movieId', '$comment', '$rating'); ");
+    }
+
+    public function m_getRating($movieId) {
+      return $this->database->query("SELECT Username, Comment, Rating
+                                     from rate
+                                     join user on user.UserId = rating.UserId
+                                     where MovieId = '$movieId'; ");
+    }
+
+    public function m_rent($userId, $movieId, $username, $address, $phoneNumber, $paymentMethod) {
+      $this->database->query("INSERT into rent (userid, movieid, username, address, phonenumber, paymentmethod, status, ReturnDate)
+                              values (UserId, MovieId, Username, Address, PhoneNumber, PaymentMethod, 'rent', current_timestamp + interval 3 day);");
+
+      $this->database->query("UPDATE movie 
+                              set Stock = Stock - 1
+                              where MovieId = '$movieId'; ");
+    }
+
+    public function m_getRentHistory($rentId) {
+      return $this->database->query("SELECT rent.username, title, paymentmethod, price, rentdate, returndate, status
+                                     from rent
+                                     join Movie on Movie.MovieId = rent.MovieId
+                                     where rentId = '$rentId'; ");
+    }
+
+    public function m_return($rentId, $movieId) {
+      $this->database->query("UPDATE rent
+                              set 
+                                  Status = 'returned', 
+                                  returndate = current_timestamp
+                              where rentId = '$rentId'; ");
+                              
+      $this->database->query("UPDATE movie 
+                              set Stock = Stock + 1
+                              where MovieId = '$movieId'; ");
+    }
+
   }
 ?>
