@@ -1,35 +1,11 @@
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  margin: 0 0;
+  padding: 0 0;
 }
 
 body {
-  padding: 48px;
-  background-color: #232D3F;
+  background-color: #191F2C;
   font-family: "Inter", sans-serif;
   color: #e7e7e7;
-}
-
-.container {
-  background-color: #191f2c;
-  max-width: 1440px;
-}
-
-.form-group {
-  margin-bottom: 12px;
-}
-
-.form-control {
-  width: 400px;
-}
-
-.container-form {
-  max-width: 600px;
-  padding: 48px;
-}
-
-.container-img {
-  max-width: 600px;
-  padding: 48px;
 }
