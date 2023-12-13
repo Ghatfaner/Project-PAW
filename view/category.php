@@ -66,5 +66,17 @@
 
     </div>
   </nav>
+  <div>
+    <h4>Sort By:</h4>
+    <select name="" id="">
+      <option value="">Ascending (A-Z)</option>
+      <option value="">Descending (Z-A)</option>
+      <option value="">Date (Latest)</option>
+      <option value="">Date (Oldest)</option>
+      <option value="">Lower Price</option>
+      <option value="">Higher Price</option>
+      <option value="">Age Rating</option>
+    </select>
+  </div>
 </body>
 </html>
