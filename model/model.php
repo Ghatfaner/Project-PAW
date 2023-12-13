@@ -171,4 +171,5 @@
                                   Occupation = case when '$occupation' = '' then Occupation else '$occupation' end
                               where UserId = '$userId'; ");
     }
+  }
 ?>

@@ -19,51 +19,71 @@ if (isset($_SESSION['userId'])) {
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
   <link rel="stylesheet" href="../css/styles.css">
-
+  
+  <style>
+    .container {
+      width: 50%;
+    }
+    .h3 {
+      font-weight: 500;
+    }
+    .form-label {
+      margin-bottom: 4px
+    }
+    .container {
+      background-color: #232D3F;
+      padding: 36px 36px;
+    }
+    .submit-btn {
+      border: none;
+      padding: 12px 12px;
+      background-color: #FDB827;
+      color: #232D3F;
+      font-weight: 600;
+    }
+  </style>
+  
   <title>Sign In</title>
 </head>
 <body>
-    <div class="container rounded d-flex justify-content-between">
-      <div class="container-form">
-        <h2 class="form-title mb-4">Login</h2>
-        <?php
-          if (isset($_POST['login'])) {
-            $email = isset($_POST['email']) ? $_POST['email'] : '';
-            $password = isset($_POST['password']) ? $_POST['password'] : '';
+    <div class="container mt-5 mb-5 rounded">
+      <h3 class="mb-3 d-flex justify-content-center">Login</h3>
+      <div class="d-flex justify-content-center">
+        <img src="../pictures/Logo-Light-Big.png" alt="registration" class="mb-5">
+      </div>
+      <?php
+        if (isset($_POST['login'])) {
+          $email = isset($_POST['email']) ? $_POST['email'] : '';
+          $password = isset($_POST['password']) ? $_POST['password'] : '';
 
-            require_once "../connDB.php"; // Check the path here
-            require_once "../controller/control.php"; // Check the path here
-            $sql = new control(); // Make sure control class is defined
-            $result = $sql->c_signIn($email, $password);
+          require_once "../connDB.php"; // Check the path here
+          require_once "../controller/control.php"; // Check the path here
+          $sql = new control(); // Make sure control class is defined
+          $result = $sql->c_signIn($email, $password);
 
-            if ($result == 'failed') {
-              echo "<div class='alert alert-danger' role='alert'>Sign in failed</div>";
-            } else {
-              session_start();
-              $_SESSION['userId'] = $result;
-              header("Location: index.php");
-              die();
-            }
+          if ($result == 'failed') {
+            echo "<div class='alert alert-danger' role='alert'>Sign in failed. Check your email or password.</div>";
+          } else {
+            session_start();
+            $_SESSION['userId'] = $result;
+            header("Location: index.php");
+            die();
           }
-        ?>
-        <form action="login.php" method="post">
-          
-          <div class="form-group">
-            <div class="form-label">Email</div>
-            <input type="email" name="email" class="form-control rounded" placeholder="Write your email" required>
-          </div>
-          <div class="form-group">
-            <div class="form-label">Password</div>
-            <input type="password" name="password" class="form-control rounded" placeholder="Write your password" required>
-          </div>
-          <div class="submit-button mt-5">
-            <input type="submit" name="login" class="btn btn-light btn-block" value="Sign in">
-          </div>
-        </form>
-      </div>
-      <div class="container-img">
-        <img src="../pictures/regist-img.png" alt="registration" class="img-fluid mt-5">
-      </div>
+        }
+      ?>
+      <form action="login.php" method="post">
+        <div class="mb-2">
+          <div class="form-label">Email</div>
+          <input type="email" name="email" class="form-control rounded" placeholder="Email" required>
+        </div>
+        <div class="mb-5">
+          <div class="form-label">Password</div>
+          <input type="password" name="password" class="form-control rounded" placeholder="Password" required>
+        </div>
+        <div>
+          <input type="submit" name="login" class="form-control rounded submit-btn" value="Login">
+        </div>
+      </form>
     </div>
 </body>
 </html>
