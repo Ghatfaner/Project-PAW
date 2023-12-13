@@ -1,4 +1,10 @@
-
+<?php
+session_start();
+if (isset($_SESSION['userId'])) {
+  header("Location: index.php");
+  die();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +64,7 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
-        <form action="" method="post">
+        <form action="registration.php" method="post">
           <div class="form-group">
             <div class="form-label">Username</div>
             <input type="text" name="username" class="form-control rounded" placeholder="Write your username" required>

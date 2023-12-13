@@ -37,6 +37,7 @@
         $query = $this->database->query("SELECT UserId
                                 FROM user
                                 WHERE Email = '$email'
+
                                 AND Password = '$password'; ");
         $userID = $query->fetch_assoc();           
         return $userID['UserId'];
@@ -170,8 +171,4 @@
                                   Occupation = case when '$occupation' = '' then Occupation else '$occupation' end
                               where UserId = '$userId'; ");
     }
-
-  
-  }
-
 ?>
