@@ -244,7 +244,7 @@ if (!isset($_SESSION['userId'])) {
               <span><?php echo $action['year'] ?></span> <span class="mx-1 rounded p-1 bg-secondary"><?php echo $action['AgeRating'] ?></span> <span class="rounded p-1 bg-secondary"><?php echo $action['GenreName'] ?></span>
               <p><?php echo $action['Synopsis'] ?></p>
             </div>
-            <div class="card-btn"><a href="#" class="btn">More Details</a></div>
+            <div class="card-btn"><a href="detail.php?movieId=<?= $action['MovieId'] ?>" class="btn">More Details</a></div>
           </div>
         </div>
       </div>
