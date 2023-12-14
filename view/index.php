@@ -101,9 +101,21 @@ if (!isset($_SESSION['userId'])) {
       padding: 24px 24px;
     }
     .card-text-action {
+      margin-bottom: 1rem;
       height: 10rem;
     }
     .card-text-action p {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+    .card-body-documentary {
+      padding: 24px 24px;
+    }
+    .card-text-documentary {
+      margin-bottom: 1rem;
+      height: 8rem;
+    }
+    .card-text-documentary p {
       font-size: 0.9rem;
       margin-top: 0.5rem;
     }
@@ -117,6 +129,7 @@ if (!isset($_SESSION['userId'])) {
       color: #2B7761;
     }
   </style>
+
 </head>
 <body>
   <nav class="navbar navbar-expand-lg sticky-top">
@@ -218,12 +231,12 @@ if (!isset($_SESSION['userId'])) {
         <div class="card border border-0">
           <img src="../pictures/movie-wide/<?php echo $action['MovieId'] ?>.png" class="card-img-top" alt="...">
           <div class="card-body-action">
-            <h4 class="card-title-action mb-3"><?php echo $action['Title'] ?></h5>
+            <h5 class="card-title-action mb-3">How Film-maker Make: </br><?php echo $action['Title'] ?></h5>
             <div class="card-text-action">
               <span><?php echo $action['year'] ?></span> <span class="mx-1 rounded p-1 bg-secondary"><?php echo $action['AgeRating'] ?></span> <span class="rounded p-1 bg-secondary"><?php echo $action['GenreName'] ?></span>
               <p><?php echo $action['Synopsis'] ?></p>
             </div>
-            <div class="card-btn"><a href="#" class="btn">More Detail</a></div>
+            <div class="card-btn"><a href="#" class="btn">More Details</a></div>
           </div>
         </div>
       </div>
@@ -250,10 +263,12 @@ if (!isset($_SESSION['userId'])) {
       <div class="col-3">
         <div class="card border border-0">
           <img src="../pictures/movie-wide/<?php echo $documentary['MovieId'] ?>.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title"><?php echo $documentary['Title'] ?></h5>
-            <span class="card-text"><?php echo $documentary['year'] ?></span> <span class="card-text"><?php echo $documentary['AgeRating'] ?></span> <span class="card-text"><?php echo $documentary['GenreName'] ?></span>
-            <p class="card-text"><?php echo $documentary['Synopsis'] ?></p>
+          <div class="card-body-documentary">
+            <h5 class="card-title-documentary">How Film-maker Make: <?php echo $documentary['Title'] ?></h5>
+            <div class="card-text-documentary">
+              <span><?php echo $documentary['year'] ?></span> <span class="mx-1 rounded p-1 bg-secondary"><?php echo $documentary['AgeRating'] ?></span> <span class="rounded p-1 bg-secondary"><?php echo $documentary['GenreName'] ?></span>
+              <p><?php echo $documentary['Synopsis'] ?></p>
+            </div>
             <a href="#" class="btn">More Detail</a>
           </div>
         </div>
@@ -271,9 +286,9 @@ if (!isset($_SESSION['userId'])) {
       <img src="../pictures/thumbnail/thumbnail-1.png" alt="" class="card-img">
       <div class="container-card-big">
         <div class="card-img-overlay px-5">
-          <h3 class="card-title">Card title</h3>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn px-3 py-2">Go somewhere</a>
+          <h3 class="card-title">Current faves, future obsession</h3>
+          <p class="card-text">Watch the teaser then checkout to learn movies.</p>
+          <a href="../view/search.php" class="btn px-3 py-2">Explore more</a>
         </div>
       </div>
     </div>
@@ -281,43 +296,115 @@ if (!isset($_SESSION['userId'])) {
 
   <div class="container-card mt-5 mb-5">
     <div class="row px-5">
-      <h3 class="mb-3">Upcoming Review Movies</h3>
-      
-      <div class="col">
-        <div class="card border border-0">
-          <img src="../pictures/up-movie-wide/up-1.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn">Go somewhere</a>
-          </div>
-        </div>
-      </div>
+        <h3 class="mb-3">Upcoming Review Movies</h3>
 
-      <div class="col">
-        <div class="card border border-0">
-          <img src="../pictures/up-movie-wide/up-2.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn">Go somewhere</a>
-          </div>
-        </div>
-      </div>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-      <div class="col">
-        <div class="card border border-0">
-          <img src="../pictures/up-movie-wide/up-3.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn">Go somewhere</a>
-          </div>
+        <!-- Video Card 1 -->
+        <div class="col">
+            <div class="card border border-0">
+                <img src="../pictures/up-movie-wide/up-1.png" class="card-img-top" alt="...">
+                <div class="card-body p-4">
+                    <h5 class="card-title">How Film-maker Make: <br>Spider-man: Across The Spider-Verse</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <button class="btn play-video" style="background-color: #2B7761; color: #fff; transition: background-color 0.3s, color 0.3s;" data-toggle="modal" data-target="#videoModal1" onmouseover="this.style.backgroundColor='#fff'; this.style.color='#2B7761';" onmouseout="this.style.backgroundColor='#2B7761'; this.style.color='#fff';">View content</button>
+                </div>
+            </div>
         </div>
-      </div>
 
-    </div>
+        <!-- Video Card 2 -->
+        <div class="col">
+            <div class="card border border-0">
+                <img src="../pictures/up-movie-wide/up-2.png" class="card-img-top" alt="...">
+                <div class="card-body p-4">
+                    <h5 class="card-title">How Film-maker Make: <br>Dune: Part Two</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <button class="btn play-video" style="background-color: #2B7761; color: #fff; transition: background-color 0.3s, color 0.3s;" data-toggle="modal" data-target="#videoModal2" onmouseover="this.style.backgroundColor='#fff'; this.style.color='#2B7761';" onmouseout="this.style.backgroundColor='#2B7761'; this.style.color='#fff';">View content</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Card 3 -->
+        <div class="col">
+            <div class="card border border-0">
+                <img src="../pictures/up-movie-wide/up-3.png" class="card-img-top" alt="...">
+                <div class="card-body p-4">
+                    <h5 class="card-title">How Film-maker Make: <br>Kingdom Of The Planet Of The Apes</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <button class="btn play-video" style="background-color: #2B7761; color: #fff; transition: background-color 0.3s, color 0.3s;" data-toggle="modal" data-target="#videoModal3" onmouseover="this.style.backgroundColor='#fff'; this.style.color='#2B7761';" onmouseout="this.style.backgroundColor='#2B7761'; this.style.color='#fff';">View content</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 1 -->
+        <div class="modal fade" id="videoModal1" tabindex="-1" aria-labelledby="videoModalLabel1" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-dark">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-white-50" id="videoModalLabel1">How Film-maker Make: Spider-man: Across The Spider-Verse</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex justify-content-center">
+                    <iframe width="720" height="420" src="https://www.youtube.com/embed/PITNvuEV0Co?si=A1tib2K08Q7Ra-2a" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 2 -->
+        <div class="modal fade" id="videoModal2" tabindex="-1" aria-labelledby="videoModalLabel2" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-dark">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-white-50" id="videoModalLabel2">How Film-maker Make: Dune: Part Two</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex justify-content-center">
+                    <iframe width="720" height="420" src="https://www.youtube.com/embed/HMimPzPGMwc?si=Vf21M-cLur_i4pVY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 3 -->
+        <div class="modal fade" id="videoModal3" tabindex="-1" aria-labelledby="videoModalLabel3" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-dark">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-white-50" id="videoModalLabel3">How Film-maker Make: Kingdom Of The Planet Of The Apes</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex justify-content-center">
+                    <iframe width="720" height="420" src="https://www.youtube.com/embed/XIUj7oESpRM?si=p8aCN8oRqf4uSdkN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                $('.play-video').on('click', function () {
+                    openVideoInModal($(this).data('target'));
+                });
+
+                $('[id^="videoModal"]').on('hidden.bs.modal', function () {
+                    stopVideo($(this).attr('id'));
+                });
+
+                function openVideoInModal(modalId) {
+                    $(modalId).modal('show');
+                }
+
+                function stopVideo(modalId) {
+                    var iframeId = modalId.replace('videoModal', 'videoIframe');
+                    $('#' + iframeId).attr('src', '');
+                }
+            });
+        </script>
+
+      </div>
   </div>
+
   
   <div class="px-5"><a href="../controller/logout.php" class="btn btn-warning w-100 mb-5 fs-3 fw-semibold">Logout</a></div>
 
