@@ -180,31 +180,25 @@ if (!isset($_SESSION['userId'])) {
       <div class="carousel-item active">
         <div class="overlay-image" style="background-image:url(../pictures/movie-wide/1.png);"></div>
         <div class="container">
-          <h1>Example headline</h1>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis esse qui molestias beatae explicabo alias et tempore. Tempore vel distinctio reprehenderit est repellendus nesciunt impedit cumque! Debitis velit accusantium rem.</p>
-          <a href="#" class="btn btn-lg ">
-            Read more
-          </a>
+          <h1 class="fw-bold">Discover the Magic</h1>
+          <p class="fs-4 fw-normal">Experience breathtaking stories and incredible adventures that will transport you to another world.</p>
+          
         </div>
       </div>
       <div class="carousel-item">
         <div class="overlay-image" style="background-image:url(../pictures/movie-wide/2.png);"></div>
         <div class="container">
-          <h1>Example headline</h1>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis esse qui molestias beatae explicabo alias et tempore. Tempore vel distinctio reprehenderit est repellendus nesciunt impedit cumque! Debitis velit accusantium rem.</p>
-          <a href="#" class="btn btn-lg ">
-            Read more
-          </a>
+          <h1 class="fw-bold">Unleash Your Imagination</h1>
+          <p class="fs-4 fw-normal">Immerse yourself in the art of filmmaking and explore the limitless possibilities of storytelling.</p>
+          
         </div>
       </div>
       <div class="carousel-item">
         <div class="overlay-image" style="background-image:url(../pictures/movie-wide/3.png);"></div>
         <div class="container">
-          <h1>Example headline</h1>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis esse qui molestias beatae explicabo alias et tempore. Tempore vel distinctio reprehenderit est repellendus nesciunt impedit cumque! Debitis velit accusantium rem.</p>
-          <a href="#" class="btn btn-lg ">
-            Read more
-          </a>
+          <h1 class="fw-bold">Adventure Awaits</h1>
+          <p class="fs-4 fw-normal">Embark on thrilling journeys and witness the creativity of filmmakers as they bring dreams to life.</p>
+          
         </div>
       </div>
     </div>
