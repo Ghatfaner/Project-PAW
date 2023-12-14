@@ -128,12 +128,20 @@ if (!isset($_SESSION['userId'])) {
           <p class="card-text fs-5 fw-light"><?php echo $result['Synopsis'] ?></p>
         </div>
 
-        <div class="rent-stock d-flex align-items-center gap-2 mb-3">
-          <i class="fas fa-bag-shopping fa-2xl"></i>
-          <span class="fs-5">Stock available</span>
+        <div class="rent-stock d-flex flex-row align-items-center gap-2 mb-3">
+          <i class="fas fa-bag-shopping fa-xl"></i>
+          <span class="fs-5 fw-medium">Check details below</span>
         </div>
 
-        <a href="../view/rent.php?movieId=<?= $result['MovieId'] ?>" class="btn px-3 py-2 fs-4 fw-semibold">Rent for $<?php echo $result['price'] ?></a>
+        <a href="../view/rent.php?movieId=<?= $result['MovieId'] ?>" class="btn px-3 py-2 fs-4 fw-semibold <?php echo ($result['Stock'] == 0) ? 'disabled bg-success' : '' ?>">
+        <?php
+        if ($result['Stock'] > 0) {
+        echo "Rent for $" . $result['price'];
+        } else {
+        echo "Out of Stock";
+        }
+        ?>
+        </a>
 
       </div>
     </div>
@@ -143,7 +151,7 @@ if (!isset($_SESSION['userId'])) {
   <div class=" movie-details container-fluid d-flex flex-column px-5 py-5">
     <div class="movie-details-logo d-flex flex-row justify-content-start align-items-center gap-2 mb-3">
       <i class="fas fa-film fa-2x"></i>
-      <h5 class="fs-2 fw-bold">Movie Details</h5>
+      <h5 class="fs-2 fw-bold">Video Details</h5>
     </div>
 
     <!-- Movie Image Text -->
