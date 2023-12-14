@@ -52,6 +52,7 @@
                                      from Movie
                                      natural join Genre
                                      where GenreName = 'action'
+                                     ORDER BY RAND()
                                      limit 4;");
     }
 
@@ -60,6 +61,7 @@
                                      from Movie
                                      natural join Genre
                                      where GenreName = 'comedy'
+                                     ORDER BY RAND()
                                      limit 4;");
     }
 
@@ -68,6 +70,7 @@
                                      from Movie
                                      natural join Genre
                                      where GenreName = 'animation'
+                                     ORDER BY RAND()
                                      limit 4;");
     }
 
@@ -76,6 +79,7 @@
                                      from Movie
                                      natural join Genre
                                      where GenreName = 'horror'
+                                     ORDER BY RAND()
                                      limit 4;");
     }
 
@@ -84,6 +88,7 @@
                                      from Movie
                                      natural join Genre
                                      where GenreName = 'science fiction'
+                                     ORDER BY RAND()
                                      limit 4;");
     }
 
@@ -92,6 +97,7 @@
                                      from Movie
                                      natural join Genre
                                      where GenreName = 'documentary'
+                                     ORDER BY RAND()
                                      limit 4;");
     }
 
