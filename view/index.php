@@ -264,7 +264,7 @@ if (!isset($_SESSION['userId'])) {
         <div class="card border border-0">
           <img src="../pictures/movie-wide/<?php echo $documentary['MovieId'] ?>.png" class="card-img-top" alt="...">
           <div class="card-body-documentary">
-            <h5 class="card-title-documentary">How Film-maker Make: <?php echo $documentary['Title'] ?></h5>
+            <h5 class="card-title-documentary">How Film-maker Make: </br><?php echo $documentary['Title'] ?></h5>
             <div class="card-text-documentary">
               <span><?php echo $documentary['year'] ?></span> <span class="mx-1 rounded p-1 bg-secondary"><?php echo $documentary['AgeRating'] ?></span> <span class="rounded p-1 bg-secondary"><?php echo $documentary['GenreName'] ?></span>
               <p><?php echo $documentary['Synopsis'] ?></p>
