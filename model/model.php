@@ -171,5 +171,9 @@
                                   Occupation = case when '$occupation' = '' then Occupation else '$occupation' end
                               where UserId = '$userId'; ");
     }
+
+    public function m_rentHistory($no, $username, $movieTitle, $paymentMethod, $price, $rentDate, $returnDate, $status){
+      $this->database->query("SELECT ")
+    }
   }
 ?>

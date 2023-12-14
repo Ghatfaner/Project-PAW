@@ -97,6 +97,7 @@
 
     public function c_updateProfile($userId, $username, $email, $password, $address, $phoneNumber, $occupation) {
       $this->model->m_updateProfile($userId, $username, $email, $password, $address, $phoneNumber, $occupation);
+      include_once "../view/editProfile.php";
     }
 
 
