@@ -101,6 +101,7 @@
                                             ReleaseDate, Duration, Synopsis, 
                                             AgeRating, Stock, price, 
                                             (select ActorName
+                                             from actor
                                              natural join Casting
                                              where Casting.MovieId = '$movieId') as actor
                                     from movie
