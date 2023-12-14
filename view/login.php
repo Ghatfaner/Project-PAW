@@ -18,11 +18,17 @@ if (isset($_SESSION['userId'])) {
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="../css/styles.css">
   
   <style>
     .container {
-      width: 50%;
+      max-width: 50%;
+      background-color: #232D3F;
+      padding: 36px 36px;
     }
     .h3 {
       font-weight: 500;
@@ -30,24 +36,19 @@ if (isset($_SESSION['userId'])) {
     .form-label {
       margin-bottom: 4px
     }
-    .container {
-      background-color: #232D3F;
-      padding: 36px 36px;
-    }
     .submit-btn {
       border: none;
-      padding: 12px 12px;
-      background-color: #FDB827;
-      color: #232D3F;
+      background-color: #2B7761;
+      color: #E6EFEC;
       font-weight: 600;
     }
   </style>
   
-  <title>Sign In</title>
+  <title>Login</title>
 </head>
 <body>
     <div class="container mt-5 mb-5 rounded">
-      <h3 class="mb-3 d-flex justify-content-center">Login</h3>
+      <p class="mb-5 d-flex justify-content-center fs-3 fw-semibold">Login</p>
       <div class="d-flex justify-content-center">
         <img src="../pictures/Logo-Light-Big.png" alt="registration" class="mb-5">
       </div>
@@ -80,9 +81,9 @@ if (isset($_SESSION['userId'])) {
           <div class="form-label">Password</div>
           <input type="password" name="password" class="form-control rounded" placeholder="Password" required>
         </div>
-        <div>
-          <input type="submit" name="login" class="form-control rounded submit-btn" value="Login">
-        </div>
+
+        <input type="submit" name="login" class="form-control rounded submit-btn py-3 fs-5" value="Login">
+        
       </form>
     </div>
 </body>

@@ -2,10 +2,10 @@
   box-sizing: border-box;
   margin: 0 0;
   padding: 0 0;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
   background-color: #191F2C;
-  font-family: "Inter", sans-serif;
   color: #e7e7e7;
 }
