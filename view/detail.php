@@ -133,7 +133,7 @@ if (!isset($_SESSION['userId'])) {
           <span class="fs-5">Stock available</span>
         </div>
 
-        <a href="../view/search.php" class="btn px-3 py-2 fs-4 fw-semibold">Rent for $<?php echo $result['price'] ?></a>
+        <a href="../view/rent.php?movieId=<?= $result['MovieId'] ?>" class="btn px-3 py-2 fs-4 fw-semibold">Rent for $<?php echo $result['price'] ?></a>
 
       </div>
     </div>
