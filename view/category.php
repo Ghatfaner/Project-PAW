@@ -58,36 +58,28 @@
       background-color: #2B7761;
       color: #E6EFEC;
     }
-    .overlay-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-position: center;
-      background-size: cover;
-      opacity: 0.5;
-    }
-    .card-img {
-      max-height: 32rem;
-      opacity: 0.5;
+    .card {
+      background-color: #232D3F;
+      color: #e7e7e7;
     }
     .card-img-top {
       height: 12rem;
       object-fit: cover;
     }
-    .container-card-big {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      border-radius: 0 0 0.25rem 0.25rem;
-      padding-bottom: 11rem;
-      background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(35, 45, 63, 0));
+    .card-body-action {
+      padding: 24px 24px;
+      height: 20rem;
     }
-    .card {
-      background-color: #232D3F;
-      color: #e7e7e7;
+    .card-text-action {
+      margin-bottom: 1rem;
+      height: 10rem;
+    }
+    .card-text-action span {
+      font-size: 0.9rem;
+    }
+    .card-text-action p {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
     }
     .card a {
       border: none;
@@ -97,6 +89,10 @@
     .card a:hover {
       background-color: #E6EFEC;
       color: #2B7761;
+    }
+    .form-select option {
+      background-color: #232D3F;
+      color: #e7e7e7;
     }
   </style>
 </head>
@@ -131,19 +127,21 @@
     </div>
   </nav>
   
+  <div class="container-card mt-5 mb-5">
+    <div class="row px-5">
   
   <form action="category.php" method="get">
-  Sort by: 
-  <select class="form-select" aria-label="Default select example" name="sort" onchange="this.form.submit()">
-    <option selected>Choose...</option>
-    <option value="ascending">Ascending (A-Z)</option>
-    <option value="descending">Descending (Z-A)</option>
-    <option value="latest">Date (Latest)</option>
-    <option value="oldest">Date (Oldest)</option>
-    <option value="lowerPrice">Lower Price</option>
-    <option value="higherPrice">Higher Price</option>
-    <option value="age">Age Rating</option>
-  </select>
+    <div class="mb-2 fs-4 fw-semibold">Sort by:</div> 
+    <select class="form-select bg-success text-light border border-0 shadow-lg" style="--bs-bg-opacity: .5" aria-label="Default select example" name="sort" onchange="this.form.submit()">
+      <option selected>Choose...</option>
+      <option value="ascending">Ascending (A-Z)</option>
+      <option value="descending">Descending (Z-A)</option>
+      <option value="latest">Date (Latest)</option>
+      <option value="oldest">Date (Oldest)</option>
+      <option value="lowerPrice">Lower Price</option>
+      <option value="higherPrice">Higher Price</option>
+      <option value="age">Age Rating</option>
+    </select>
 </form>
 
 <?php
@@ -180,8 +178,6 @@
   }
 ?>
 
-  <div class="container-card mt-5 mb-5">
-    <div class="row px-5">
 
     <!-- jgn lupa cardnya ditambahin buat price, di figma blm ad soalnyaa -->
     
@@ -189,13 +185,17 @@
       foreach ($action as $sort) {
     ?>
     
-    <div class="col-3">
+    <div class="col-3 my-3">
         <div class="card border border-0">
           <img src="../pictures/movie-wide/<?php echo $sort['MovieId'] ?>.png" class="card-img-top" alt="...">
+
           <div class="card-body-action">
-            <h4 class="card-title-action mb-3"><?php echo $sort['Title'] ?></h5>
-            <div class="card-text-action">
-              <span><?php echo $sort['year'] ?></span> <span class="mx-1 rounded p-1 bg-secondary"><?php echo $sort['AgeRating'] ?></span> <span class="rounded p-1 bg-secondary"><?php echo $sort['GenreName'] ?></span> <span class="rounded p-1 bg-secondary">$<?php echo $sort['Price'] ?></span>
+            <h5 class="card-title-action mb-3"><?php echo $sort['Title'] ?></h5>
+            <div class="card-text-action fs-6">
+              <span><?php echo $sort['year'] ?></span> 
+              <span class="rounded p-1 bg-secondary"><?php echo $sort['AgeRating'] ?></span> 
+              <span class="rounded p-1 bg-secondary"><?php echo $sort['GenreName'] ?></span> 
+              <span class="rounded p-1 bg-secondary">$<?php echo $sort['Price'] ?></span>
               <p><?php echo $sort['Synopsis'] ?></p>
             </div>
             <div class="card-btn"><a href="#" class="btn">More Detail</a></div>
