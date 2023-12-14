@@ -13,7 +13,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="../css/styles.css">
-
+  
+  <link rel="icon" href="../pictures/Logo-Light-Small.png" type="image/x-icon">
   <title>Category</title>
 
   <style>
@@ -68,7 +69,7 @@
     }
     .card-body-action {
       padding: 24px 24px;
-      height: 20rem;
+      height: 22rem;
     }
     .card-text-action {
       margin-bottom: 1rem;
@@ -97,7 +98,7 @@
   </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container-fluid px-4">
 
       <a class="navbar-brand" href="../view/index.php">
@@ -190,7 +191,7 @@
           <img src="../pictures/movie-wide/<?php echo $sort['MovieId'] ?>.png" class="card-img-top" alt="...">
 
           <div class="card-body-action">
-            <h5 class="card-title-action mb-3"><?php echo $sort['Title'] ?></h5>
+            <h5 class="card-title-action mb-3">How Film-maker Make: </br><?php echo $sort['Title'] ?></h5>
             <div class="card-text-action fs-6">
               <span><?php echo $sort['year'] ?></span> 
               <span class="rounded p-1 bg-secondary"><?php echo $sort['AgeRating'] ?></span> 

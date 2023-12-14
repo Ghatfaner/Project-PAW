@@ -24,6 +24,9 @@ if (isset($_SESSION['userId'])) {
 
   <link rel="stylesheet" href="../css/styles.css">
   
+  <link rel="icon" href="../pictures/Logo-Light-Small.png" type="image/x-icon">
+  <title>Login</title>
+
   <style>
     .container {
       max-width: 50%;
@@ -50,7 +53,7 @@ if (isset($_SESSION['userId'])) {
     }
   </style>
   
-  <title>Login</title>
+  
 </head>
 <body>
     <div class="container mt-5 mb-5 rounded">

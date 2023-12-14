@@ -22,6 +22,8 @@ if (!isset($_SESSION['userId'])) {
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="../css/styles.css">
+  
+  <link rel="icon" href="../pictures/Logo-Light-Small.png" type="image/x-icon">
   <title>Home</title>
 
   <style>
@@ -97,8 +99,13 @@ if (!isset($_SESSION['userId'])) {
       background-color: #232D3F;
       color: #e7e7e7;
     }
+    .card-body {
+      padding: 24px 24px;
+      height: 16rem;
+    }
     .card-body-action {
       padding: 24px 24px;
+      height: 22rem;
     }
     .card-text-action {
       margin-bottom: 1rem;
@@ -110,6 +117,7 @@ if (!isset($_SESSION['userId'])) {
     }
     .card-body-documentary {
       padding: 24px 24px;
+      height: 20rem;
     }
     .card-text-documentary {
       margin-bottom: 1rem;
