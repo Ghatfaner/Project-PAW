@@ -139,19 +139,19 @@
   <div class="container-card mt-5 mb-5">
     <div class="row px-5">
   
-  <form action="category.php" method="get">
-    <div class="mb-2 fs-4 fw-semibold">Sort by:</div> 
-    <select class="form-select bg-success text-light border border-0 shadow-lg" style="--bs-bg-opacity: .5" aria-label="Default select example" name="sort" onchange="this.form.submit()">
-      <option selected>Choose...</option>
-      <option value="ascending">Ascending (A-Z)</option>
-      <option value="descending">Descending (Z-A)</option>
-      <option value="latest">Date (Latest)</option>
-      <option value="oldest">Date (Oldest)</option>
-      <option value="lowerPrice">Lower Price</option>
-      <option value="higherPrice">Higher Price</option>
-      <option value="age">Age Rating</option>
-    </select>
-</form>
+    <form action="category.php" method="get">
+      <div class="mb-2 fs-4 fw-semibold">Sort by:</div> 
+      <select class="form-select bg-success text-light border border-0 shadow-lg" style="--bs-bg-opacity: .5" aria-label="Default select example" name="sort" onchange="this.form.submit()">
+        <option selected>Choose...</option>
+        <option value="ascending">Ascending (A-Z)</option>
+        <option value="descending">Descending (Z-A)</option>
+        <option value="latest">Date (Latest)</option>
+        <option value="oldest">Date (Oldest)</option>
+        <option value="lowerPrice">Lower Price</option>
+        <option value="higherPrice">Higher Price</option>
+        <option value="age">Age Rating</option>
+      </select>
+    </form>
 
 <?php
   include_once '../controller/control.php';
