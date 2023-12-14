@@ -42,6 +42,12 @@ if (isset($_SESSION['userId'])) {
       color: #E6EFEC;
       font-weight: 600;
     }
+    .form-text {
+      opacity: 0.5;
+    }
+    .form-text a {
+      color: #2B7761;
+    }
   </style>
   
   <title>Login</title>
@@ -83,6 +89,9 @@ if (isset($_SESSION['userId'])) {
         </div>
 
         <input type="submit" name="login" class="form-control rounded submit-btn py-3 fs-5" value="Login">
+        <div class="form-text mt-4 fs-5 text-center text-light">
+          Don't have an account? <a href="registration.php" class="text-decoration-none">Sign up</a>
+        </div>
         
       </form>
     </div>

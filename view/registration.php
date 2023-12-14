@@ -44,6 +44,14 @@ if (isset($_SESSION['userId'])) {
       color: #E6EFEC;
       font-weight: 600;
     }
+    .form-text {
+      font-size: 12px;
+      color: #E6EFEC;
+      opacity: 0.5;
+    }
+    .form-text a {
+      color: #2B7761;
+    }
   </style>
 </head>
 <body>
@@ -107,6 +115,9 @@ if (isset($_SESSION['userId'])) {
           <div class="col">
             <div class="mb-1">Phone Number</div>
             <input type="tel" name="phone" class="form-control rounded" placeholder="Phone number" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}" required>
+            <div class="form-text">
+              Format: xxxx-xxxx-xxxx
+            </div>
           </div>
           <div class="col">
             <div class="mb-1">Occupation</div>
@@ -120,6 +131,9 @@ if (isset($_SESSION['userId'])) {
         <div class="mb-2">
           <div class="mb-1">Password</div>
           <input type="password" name="password" class="form-control rounded" placeholder="Password" required>
+          <div class="form-text">
+            Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+          </div>
         </div>
         <div class="mb-5">
           <div class="mb-1">Confirmation Password</div>
@@ -127,6 +141,9 @@ if (isset($_SESSION['userId'])) {
         </div>
         
         <input type="submit" name="submit" class="form-control rounded submit-btn py-3 fs-5" value="Sign-up">
+        <div class="form-text mt-4 fs-5 text-center">
+          Already have an account? <a href="login.php" class="text-decoration-none">Login</a>
+        </div>
         
       </form>
     </div>
