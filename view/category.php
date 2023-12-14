@@ -132,70 +132,80 @@
   </nav>
   
   
-  <div class="dropdown">
-      Sort by: <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Sort
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Ascending (A-Z)</a></li>
-        <li><a class="dropdown-item" href="#">Descending (Z-A)</a></li>
-        <li><a class="dropdown-item" href="#">Date (Latest)</a></li>
-        <li><a class="dropdown-item" href="#">Date (Oldest)</a></li>
-        <li><a class="dropdown-item" href="#">Lower Price</a></li>
-        <li><a class="dropdown-item" href="#">Higher Price</a></li>
-        <li><a class="dropdown-item" href="#">Age Rating</a></li>
-      </ul>
-  </div>
-  <!-- letaknya masih blm lurus maa cord dibawahnya faan. tpi isi dari page ini dah lengkap -->
+  <form action="category.php" method="get">
+  Sort by: 
+  <select class="form-select" aria-label="Default select example" name="sort" onchange="this.form.submit()">
+    <option selected>Choose...</option>
+    <option value="ascending">Ascending (A-Z)</option>
+    <option value="descending">Descending (Z-A)</option>
+    <option value="latest">Date (Latest)</option>
+    <option value="oldest">Date (Oldest)</option>
+    <option value="lowerPrice">Lower Price</option>
+    <option value="higherPrice">Higher Price</option>
+    <option value="age">Age Rating</option>
+  </select>
+</form>
+
+<?php
+  include_once '../controller/control.php';
+  $control = new Control();
+
+  $sortOption = $_GET['sort'] ?? 'latest';
+
+  switch ($sortOption) {
+    case 'ascending':
+      $action = $control->c_sortAscending();
+      break;
+    case 'descending':
+      $action = $control->c_sortDescending();
+      break;
+    case 'latest':
+      $action = $control->c_sortNewest();
+      break;
+    case 'oldest':
+      $action = $control->c_sortOldest();
+      break;
+    case 'lowerPrice':
+      $action = $control->c_sortLowerPrice();
+      break;
+    case 'higherPrice':
+      $action = $control->c_sortHigherPrice();
+      break;
+    case 'age':
+      $action = $control->c_sortAgeRating();
+      break;
+    default:
+      $action = $control->c_sortNewest();
+      break;
+  }
+?>
 
   <div class="container-card mt-5 mb-5">
     <div class="row px-5">
 
     <!-- jgn lupa cardnya ditambahin buat price, di figma blm ad soalnyaa -->
-      
-      <div class="col-3">
+    
+    <?php
+      foreach ($action as $sort) {
+    ?>
+    
+    <div class="col-3">
         <div class="card border border-0">
-          <img src="../pictures/movie-wide/14.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn">Go somewhere</a>
+          <img src="../pictures/movie-wide/<?php echo $sort['MovieId'] ?>.png" class="card-img-top" alt="...">
+          <div class="card-body-action">
+            <h4 class="card-title-action mb-3"><?php echo $sort['Title'] ?></h5>
+            <div class="card-text-action">
+              <span><?php echo $sort['year'] ?></span> <span class="mx-1 rounded p-1 bg-secondary"><?php echo $sort['AgeRating'] ?></span> <span class="rounded p-1 bg-secondary"><?php echo $sort['GenreName'] ?></span> <span class="rounded p-1 bg-secondary">$<?php echo $sort['Price'] ?></span>
+              <p><?php echo $sort['Synopsis'] ?></p>
+            </div>
+            <div class="card-btn"><a href="#" class="btn">More Detail</a></div>
           </div>
         </div>
       </div>
 
-      <div class="col-3">
-        <div class="card border border-0">
-          <img src="../pictures/movie-wide/17.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-3">
-        <div class="card border border-0">
-          <img src="../pictures/movie-wide/47.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-3">
-        <div class="card border border-0">
-          <img src="../pictures/movie-wide/45.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn">Go somewhere</a>
-          </div>
-        </div>
-      </div>
+    <?php
+      }
+    ?>
 
     </div>
   </div>

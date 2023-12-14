@@ -48,7 +48,7 @@
     }
 
     public function m_popularAction() {
-      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName
+      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName, Price
                                      from Movie
                                      natural join Genre
                                      where GenreName = 'action'
@@ -56,7 +56,7 @@
     }
 
     public function m_popularComedy() {
-      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName
+      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName, Price
                                      from Movie
                                      natural join Genre
                                      where GenreName = 'comedy'
@@ -64,7 +64,7 @@
     }
 
     public function m_popularAnimation() {
-      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName
+      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName, Price
                                      from Movie
                                      natural join Genre
                                      where GenreName = 'animation'
@@ -72,7 +72,7 @@
     }
 
     public function m_popularHorror() {
-      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName
+      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName, Price
                                      from Movie
                                      natural join Genre
                                      where GenreName = 'horror'
@@ -80,7 +80,7 @@
     }
 
     public function m_popularScifi() {
-      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName
+      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName, Price
                                      from Movie
                                      natural join Genre
                                      where GenreName = 'science fiction'
@@ -88,7 +88,7 @@
     }
 
     public function m_popularDocumentary() {
-      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName
+      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName, Price
                                      from Movie
                                      natural join Genre
                                      where GenreName = 'documentary'
@@ -119,44 +119,51 @@
     }
 
     public function m_sortAscending() {
-      return $this->database->query("SELECT Title, year(ReleaseDate) as year, AgeRating, Synopsis
+      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName, Price
                                      from movie
+                                     natural join Genre
                                      order by Title;");
     }
 
     public function m_sortDescending() {
-      return $this->database->query("SELECT Title, year(ReleaseDate) as year, AgeRating, Synopsis, Price
+      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName, Price
                                      from movie
+                                     natural join Genre
                                      order by Title desc;");
     }
 
     public function m_sortLowerPrice() {
-      return $this->database->query("SELECT Title, year(ReleaseDate) as year, AgeRating, Synopsis, Price
+      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName, Price
                                      from movie
+                                     natural join Genre
                                      order by price;");
     }
 
     public function m_sortHigherPrice() {
-      return $this->database->query("SELECT Title, year(ReleaseDate) as year, AgeRating, Synopsis, Price
+      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName, Price
                                      from movie
+                                     natural join Genre
                                      order by price desc;");
     }
 
     public function m_sortAgeRating() {
-      return $this->database->query("SELECT Title, year(ReleaseDate) as year, AgeRating, Synopsis, Price
+      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName, Price
                                      from movie
+                                     natural join Genre
                                      order by AgeRating;"); 
     }
 
     public function m_sortOldest() {
-      return $this->database->query("SELECT Title, year(ReleaseDate) as year, AgeRating, Synopsis, Price
+      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName, Price
                                      from movie
+                                     natural join Genre
                                      order by ReleaseDate;"); 
     }
 
     public function m_sortNewest() {
-      return $this->database->query("SELECT Title, year(ReleaseDate) as year, AgeRating, Synopsis, Price
+      return $this->database->query("SELECT MovieId, Title, year(ReleaseDate) as year, AgeRating, Synopsis, GenreName, Price
                                      from movie
+                                     natural join Genre
                                      order by ReleaseDate desc;"); 
     }
 
