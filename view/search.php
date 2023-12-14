@@ -67,13 +67,12 @@
       </div>
     </nav>
 
-    <div>
-      <!-- search box -->
-      <input type="text">
-      <button>Search</button>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Search movies or genres..." aria-label="Recipient's username" aria-describedby="button-addon2">
+      <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
     </div>
-    <br>
-    <div>
+    <!-- baru ku bikinin yg buat search, tulung stylenyaa. sama di page ini card nya beda dari yg lain -->
+
       <!-- search result -->
       <?php
       // foreach () {  loop through search result here

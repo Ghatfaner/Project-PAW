@@ -97,6 +97,16 @@ if (!isset($_SESSION['userId'])) {
       background-color: #232D3F;
       color: #e7e7e7;
     }
+    .card-body-action {
+      padding: 24px 24px;
+    }
+    .card-text-action {
+      height: 10rem;
+    }
+    .card-text-action p {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
     .card a {
       border: none;
       background-color: #2B7761;
@@ -187,104 +197,71 @@ if (!isset($_SESSION['userId'])) {
     </a>
   </div>
 
+  <?php
+    include_once '../controller/control.php';
+    $control = new Control();
+    $result = $control->c_popularAction();
+  ?>
+
   <div class="container-card mt-5 mb-5">
     <div class="row px-5">
-      <h3 class="mb-3">Popular Actions</h3>
+
+    <h3 class="mb-3">Popular Actions</h3>
+
+    <?php
+      foreach ($result as $action) {
+    ?>
+
+    <!-- udh bisa ku ambil datanya faan. tinggal styling lagi card nyaa -->
       
       <div class="col-3">
         <div class="card border border-0">
-          <img src="../pictures/movie-wide/14.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn">Go somewhere</a>
+          <img src="../pictures/movie-wide/<?php echo $action['MovieId'] ?>.png" class="card-img-top" alt="...">
+          <div class="card-body-action">
+            <h4 class="card-title-action mb-3"><?php echo $action['Title'] ?></h5>
+            <div class="card-text-action">
+              <span><?php echo $action['year'] ?></span> <span class="mx-1 rounded p-1 bg-secondary"><?php echo $action['AgeRating'] ?></span> <span class="rounded p-1 bg-secondary"><?php echo $action['GenreName'] ?></span>
+              <p><?php echo $action['Synopsis'] ?></p>
+            </div>
+            <div class="card-btn"><a href="#" class="btn">More Detail</a></div>
           </div>
         </div>
       </div>
 
-      <div class="col-3">
-        <div class="card border border-0">
-          <img src="../pictures/movie-wide/17.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-3">
-        <div class="card border border-0">
-          <img src="../pictures/movie-wide/47.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-3">
-        <div class="card border border-0">
-          <img src="../pictures/movie-wide/45.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn">Go somewhere</a>
-          </div>
-        </div>
-      </div>
+    <?php
+      }
+    ?>
 
     </div>
   </div>
 
+  <?php
+    $result = $control->c_popularDocumentary();
+  ?>
+
   <div class="container-card mt-5 mb-5">
     <div class="row px-5">
       <h3 class="mb-3">Popular Documentaries</h3>
+
+      <?php
+      foreach ($result as $documentary) {
+      ?>
       
       <div class="col-3">
         <div class="card border border-0">
-          <img src="../pictures/movie-wide/7.png" class="card-img-top" alt="...">
+          <img src="../pictures/movie-wide/<?php echo $documentary['MovieId'] ?>.png" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn">Go somewhere</a>
+            <h5 class="card-title"><?php echo $documentary['Title'] ?></h5>
+            <span class="card-text"><?php echo $documentary['year'] ?></span> <span class="card-text"><?php echo $documentary['AgeRating'] ?></span> <span class="card-text"><?php echo $documentary['GenreName'] ?></span>
+            <p class="card-text"><?php echo $documentary['Synopsis'] ?></p>
+            <a href="#" class="btn">More Detail</a>
           </div>
         </div>
       </div>
 
-      <div class="col-3">
-        <div class="card border border-0">
-          <img src="../pictures/movie-wide/35.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-3">
-        <div class="card border border-0">
-          <img src="../pictures/movie-wide/8.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-3">
-        <div class="card border border-0">
-          <img src="../pictures/movie-wide/29.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn">Go somewhere</a>
-          </div>
-        </div>
-      </div>
+      <?php
+        }
+      ?>
 
     </div>
   </div>
