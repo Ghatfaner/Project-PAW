@@ -122,7 +122,7 @@
                                      from movie
                                      natural join genre
                                      where Title like concat('%', '$identifier', '%') or
-                                     GenreName like '$identifier'; ");
+                                     GenreName like concat('%', '$identifier', '%'); ");
     }
 
     public function m_sortAscending() {
