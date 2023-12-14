@@ -277,7 +277,7 @@ if (!isset($_SESSION['userId'])) {
               <span><?php echo $documentary['year'] ?></span> <span class="mx-1 rounded p-1 bg-secondary"><?php echo $documentary['AgeRating'] ?></span> <span class="rounded p-1 bg-secondary"><?php echo $documentary['GenreName'] ?></span>
               <p><?php echo $documentary['Synopsis'] ?></p>
             </div>
-            <a href="#" class="btn">More Detail</a>
+            <div class="card-btn"><a href="detail.php?movieId=<?= $documentary['MovieId'] ?>" class="btn">More Details</a></div>
           </div>
         </div>
       </div>
