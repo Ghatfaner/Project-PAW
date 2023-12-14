@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['userId'])) {
+    header('Location: ../view/login.php');
+    die();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,11 +22,15 @@
 
   <link rel="stylesheet" href="../css/styles.css">
 
+  <link rel="icon" href="../pictures/Logo-Light-Small.png" type="image/x-icon">
   <title>Detail Movie</title>
 
   <style>
     body {
       overflow-x: hidden;
+    }
+    .fas {
+      color: gold;
     }
     .navbar {
       background-color: #005B41;
@@ -34,68 +46,182 @@
     .nav-item {
       margin-right: 12px;
     }
+    .card a {
+      border: none;
+      background-color: #2B7761;
+      color: #E6EFEC;
+    }
+    .card a:hover {
+      background-color: #E6EFEC;
+      color: #2B7761;
+    }
+    .container-card-big {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding-bottom: 15rem;
+      background: linear-gradient(0deg, rgba(25, 31,44, 1), rgba(25, 31, 44, 0.9), rgba(35, 45, 63, 0));
+      color: #E6EFEC;
+    }
+    .card-img {
+      max-height: 32rem;
+    }
+    i, h5, p {
+      padding: 0 0;
+      margin: 0 0;
+    }
+    .movie-details-img {
+      max-width: 20rem;
+    }
   </style>
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg">
-      <div class="container-fluid px-4">
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container-fluid px-4">
 
-        <a class="navbar-brand" href="../view/index.php">
-          <img src="../pictures/Logo-Light-Small.png" alt="">
-        </a>
+      <a class="navbar-brand" href="../view/index.php">
+        <img src="../pictures/Logo-Light-Small.png" alt="">
+      </a>
 
-        <div class="d-flex justify-content-end" id="navbarNav">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link text-white-50" aria-current="page" href="../view/index.php">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white-50" href="../view/search.php">Search</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white-50" href="../view/category.php">Category</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white-50" href="../view/bookmark.php">Bookmark</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white-50" href="../view/profile.php">Profile</a>
-            </li>
-          </ul>
+      <div class="d-flex justify-content-end" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-white-50" aria-current="page" href="../view/index.php">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white-50" href="../view/search.php">Search</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white-50" href="../view/category.php">Category</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white-50" href="../view/bookmark.php">Bookmark</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white-50" href="../view/profile.php">Profile</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Card Image Big -->
+  <div class="card border border-0 mb-5">
+    <img src="../pictures/movie-wide/27.png" alt="" class="card-img">
+    <div class="container-card-big">
+      <div class="card-img-overlay px-5">
+
+        <div class="card-title mb-3">
+          <h3 class="card-title fs-1 fw-bold">Current faves, future obsession</h3>
+          <p class="card-text fs-5 fw-light">Watch the teaser then checkout to learn movies.</p>
+        </div>
+
+        <div class="rent-stock d-flex align-items-center gap-2 mb-3">
+          <i class="fas fa-bag-shopping fa-2xl"></i>
+          <span class="fs-5">Stock available</span>
+        </div>
+
+        <a href="../view/search.php" class="btn px-3 py-2 fs-4 fw-semibold">Rent for $....</a>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Movie Details -->
+  <div class=" movie-details container-fluid d-flex flex-column px-5 py-5">
+    <div class="movie-details-logo d-flex flex-row justify-content-start align-items-center gap-2 mb-3">
+      <i class="fas fa-film fa-2x"></i>
+      <h5 class="fs-2 fw-bold">Movie Details</h5>
+    </div>
+
+    <!-- Movie Image Text -->
+    <div class="movie-details d-flex flex-row gap-5 align-items-center">
+      <img src="../pictures/movie-tall/27.jpg" alt="" class="movie-details-img rounded shadow-lg">
+
+      <div class="movie-details-text">
+        <h5 class="fs-1 fw-semibold mb-4">How Film-maker Make: </br> Spider-man: Into The Spider-Verse</h5>
+
+        <div class="d-flex flex-column gap-1">
+          <div class="duration d-flex flex-row gap-2">
+
+            <div class="d-flex flex-row align-items-center gap-2">
+              <i class="fas fa-clock fa-lg"></i>
+              <p class="fs-5 fw-semibold">Duration: </p>
+            </div>
+            <p class="fs-5 fw-light">1h 27m</p>
+          </div>
+
+          <div class="release-date d-flex flex-row gap-2">
+            <div class="d-flex flex-row align-items-center gap-2">
+              <i class="fas fa-calendar-days fa-lg"></i>
+              <p class="fs-5 fw-semibold">Release Date: </p>
+            </div>
+            <p class="fs-5 fw-light">23 June 2018</p>
+          </div>
+
+          <div class="age-rating d-flex flex-row gap-2">
+            <div class="d-flex flex-row align-items-center gap-2">
+              <i class="fas fa-user-group fa-lg"></i>
+              <p class="fs-5 fw-semibold">Age Rating: </p>
+            </div>
+            <p class="fs-5 fw-light">PG-13</p>
+          </div>
+
+          <div class="genre d-flex flex-row gap-2">
+            <div class="d-flex flex-row align-items-center gap-2">
+              <i class="fas fa-masks-theater fa-lg"></i>
+              <p class="fs-5 fw-semibold">Genre: </p>
+            </div>
+            <p class="fs-5 fw-light">Animation</p>
+          </div>
+
+          <div class="actors d-flex flex-row gap-2">
+            <div class="d-flex flex-row align-items-center gap-2">
+              <i class="fas fa-user-secret fa-lg"></i>
+              <p class="fs-5 fw-semibold">Actor: </p>
+            </div>
+            <p class="fs-5 fw-light">Shamike Moore</p>
+          </div>
+
+          <div class="director d-flex flex-row gap-2">
+            <div class="d-flex flex-row align-items-center gap-2">
+              <i class="fas fa-user-tie fa-lg"></i>
+              <p class="fs-5 fw-semibold">Director: </p>
+            </div>
+            <p class="fs-5 fw-light">Christopher Nolan</p>
+          </div>
+
+          <div class="production-company d-flex flex-row gap-2">
+            <div class="d-flex flex-row align-items-center gap-2">
+              <i class="fas fa-building fa-lg"></i>
+              <p class="fs-5 fw-semibold">Production Company: </p>
+            </div>
+            <p class="fs-5 fw-light">Sony Pictures</p>
+          </div>
+
+          <div class="rent-price d-flex flex-row gap-2">
+            <div class="d-flex flex-row align-items-center gap-2">
+              <i class="fas fa-money-bill-wave fa-lg"></i>
+              <p class="fs-5 fw-semibold">Rent Price: </p>
+            </div>
+            <p class="fs-5 fw-light">$9.99</p>
+          </div>
+
+          <div class="stock d-flex flex-row gap-2">
+            <div class="d-flex flex-row align-items-center gap-2">
+              <i class="fas fa-layer-group fa-lg"></i>
+              <p class="fs-5 fw-semibold">Stock: </p>
+            </div>
+            <p class="fs-5 fw-light">10/10</p>
+          </div>
         </div>
 
       </div>
-    </nav>
-
-<div>
-  <!-- header  -->
-  <h1>title here</h1>
-  <p>descrption here</p>
-  <h5>stock available</h5>
-  <button>rent</button> <button>bookmark</button> 
-</div>
-<br>
-<div>
-  <!-- detail -->
-  <h4>Movie Details</h4>
-  <img src="" alt="">
-  <h2>title here</h2>
-  <h4>Duration:</h4>
-  <h4>Release Date:</h4>
-  <h4>Age Rating:</h4>
-  <h4>Genre:</h4>
-  <h4>Actors:</h4>
-  <h4>Production Company:</h4>
-  <h4>Rent Price:</h4>
-  <h4>Stock:</h4>
-</div>
-<br>
-<div>
-  <!-- preview -->
-  <h4>Watch Crews and Behind-The-Scenes</h4><br>
-  <img src="" alt=""> <img src="" alt=""> <img src="" alt="">
-</div>
+    </div>
+  </div>
 
 </body>
 </html>
