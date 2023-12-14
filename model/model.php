@@ -107,7 +107,7 @@
                                     natural join genre
                                     natural join director
                                     natural join moviecompany
-                                    where MovieId = '$movieID'; ");
+                                    where MovieId = '$movieId'; ");
     }
 
     public function m_searchMovie($identifier) {
