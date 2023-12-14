@@ -100,7 +100,7 @@
       <?php
         }
       ?>
-      <button>More Detail</button>
+      <div class="card-btn"><a href="detail.php?movieId=<?= $result['MovieId'] ?>" class="btn">More Detail</a></div>
     </div>
 
     <?php
