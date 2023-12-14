@@ -108,15 +108,24 @@ if (!isset($_SESSION['userId'])) {
     </div>
   </nav>
 
+  <?php
+    $movieId = intval($_GET['movieId']);
+    include_once "../controller/control.php";
+    $control = new Control();
+    $action = $control->c_detailMovie($movieId);
+
+    foreach ($action as $result) {
+  ?>
+
   <!-- Card Image Big -->
   <div class="card border border-0 mb-5">
-    <img src="../pictures/movie-wide/27.png" alt="" class="card-img">
+    <img src="../pictures/movie-wide/<?php echo $result['MovieId'] ?>.png" alt="" class="card-img">
     <div class="container-card-big">
       <div class="card-img-overlay px-5">
 
         <div class="card-title mb-3">
-          <h3 class="card-title fs-1 fw-bold">Current faves, future obsession</h3>
-          <p class="card-text fs-5 fw-light">Watch the teaser then checkout to learn movies.</p>
+          <h3 class="card-title fs-1 fw-bold"><?php echo $result['Title'] ?></h3>
+          <p class="card-text fs-5 fw-light"><?php echo $result['Synopsis'] ?></p>
         </div>
 
         <div class="rent-stock d-flex align-items-center gap-2 mb-3">
@@ -124,7 +133,7 @@ if (!isset($_SESSION['userId'])) {
           <span class="fs-5">Stock available</span>
         </div>
 
-        <a href="../view/search.php" class="btn px-3 py-2 fs-4 fw-semibold">Rent for $....</a>
+        <a href="../view/search.php" class="btn px-3 py-2 fs-4 fw-semibold">Rent for $<?php echo $result['price'] ?></a>
 
       </div>
     </div>
@@ -139,89 +148,83 @@ if (!isset($_SESSION['userId'])) {
 
     <!-- Movie Image Text -->
     <div class="movie-details d-flex flex-row gap-5 align-items-center">
-      <img src="../pictures/movie-tall/27.jpg" alt="" class="movie-details-img rounded shadow-lg">
+      <img src="../pictures/movie-tall/<?php echo $result['MovieId'] ?>.jpg" alt="" class="movie-details-img rounded shadow-lg">
 
       <div class="movie-details-text">
-        <h5 class="fs-1 fw-semibold mb-4">How Film-maker Make: </br> Spider-man: Into The Spider-Verse</h5>
+        <h5 class="fs-1 fw-semibold mb-4">How Film-maker Make: </br> <?php echo $result['Title'] ?></h5>
 
         <div class="d-flex flex-column gap-1">
           <div class="duration d-flex flex-row gap-2">
-
             <div class="d-flex flex-row align-items-center gap-2">
               <i class="fas fa-clock fa-lg"></i>
-              <p class="fs-5 fw-semibold">Duration: </p>
+              <p class="fs-5 fw-semibold">Duration: <?php echo $result['Duration'] ?></p>
             </div>
-            <p class="fs-5 fw-light">1h 27m</p>
           </div>
 
           <div class="release-date d-flex flex-row gap-2">
             <div class="d-flex flex-row align-items-center gap-2">
               <i class="fas fa-calendar-days fa-lg"></i>
-              <p class="fs-5 fw-semibold">Release Date: </p>
+              <p class="fs-5 fw-semibold">Release Date: <?php echo $result['ReleaseDate'] ?></p>
             </div>
-            <p class="fs-5 fw-light">23 June 2018</p>
           </div>
 
           <div class="age-rating d-flex flex-row gap-2">
             <div class="d-flex flex-row align-items-center gap-2">
               <i class="fas fa-user-group fa-lg"></i>
-              <p class="fs-5 fw-semibold">Age Rating: </p>
+              <p class="fs-5 fw-semibold">Age Rating: <?php echo $result['AgeRating'] ?></p>
             </div>
-            <p class="fs-5 fw-light">PG-13</p>
           </div>
 
           <div class="genre d-flex flex-row gap-2">
             <div class="d-flex flex-row align-items-center gap-2">
               <i class="fas fa-masks-theater fa-lg"></i>
-              <p class="fs-5 fw-semibold">Genre: </p>
+              <p class="fs-5 fw-semibold">Genre: <?php echo $result['GenreName'] ?></p>
             </div>
-            <p class="fs-5 fw-light">Animation</p>
           </div>
 
           <div class="actors d-flex flex-row gap-2">
             <div class="d-flex flex-row align-items-center gap-2">
               <i class="fas fa-user-secret fa-lg"></i>
-              <p class="fs-5 fw-semibold">Actor: </p>
+              <p class="fs-5 fw-semibold">Actor: <?php echo $result['actor'] ?></p>
             </div>
-            <p class="fs-5 fw-light">Shamike Moore</p>
           </div>
 
           <div class="director d-flex flex-row gap-2">
             <div class="d-flex flex-row align-items-center gap-2">
               <i class="fas fa-user-tie fa-lg"></i>
-              <p class="fs-5 fw-semibold">Director: </p>
+              <p class="fs-5 fw-semibold">Director: <?php echo $result['DirectorName'] ?></p>
             </div>
-            <p class="fs-5 fw-light">Christopher Nolan</p>
           </div>
 
           <div class="production-company d-flex flex-row gap-2">
             <div class="d-flex flex-row align-items-center gap-2">
               <i class="fas fa-building fa-lg"></i>
-              <p class="fs-5 fw-semibold">Production Company: </p>
+              <p class="fs-5 fw-semibold">Production Company: <?php echo $result['CompaniesName'] ?></p>
             </div>
-            <p class="fs-5 fw-light">Sony Pictures</p>
           </div>
 
           <div class="rent-price d-flex flex-row gap-2">
             <div class="d-flex flex-row align-items-center gap-2">
               <i class="fas fa-money-bill-wave fa-lg"></i>
-              <p class="fs-5 fw-semibold">Rent Price: </p>
+              <p class="fs-5 fw-semibold">Rent Price: <?php echo $result['price'] ?></p>
             </div>
-            <p class="fs-5 fw-light">$9.99</p>
           </div>
 
           <div class="stock d-flex flex-row gap-2">
             <div class="d-flex flex-row align-items-center gap-2">
               <i class="fas fa-layer-group fa-lg"></i>
-              <p class="fs-5 fw-semibold">Stock: </p>
+              <p class="fs-5 fw-semibold">Stock: <?php echo $result['Stock'] ?></p>
             </div>
-            <p class="fs-5 fw-light">10/10</p>
           </div>
         </div>
 
       </div>
     </div>
   </div>
+
+  <?php
+    }
+  ?>
 
 </body>
 </html>
