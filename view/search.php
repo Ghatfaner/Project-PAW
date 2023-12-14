@@ -38,7 +38,7 @@
   </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg sticky-top">
       <div class="container-fluid px-4">
 
         <a class="navbar-brand" href="../view/index.php">
@@ -69,27 +69,43 @@
     </nav>
 
     <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Search movies or genres..." aria-label="Recipient's username" aria-describedby="button-addon2">
-      <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+      <form action="search.php" method="GET" class="d-inline">
+        <input type="text" name="identifier" class="form-control" placeholder="Search movies or genres..." aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" name="search"  type="submit" id="button-addon2">Search</button>
+      </form>
     </div>
-    <!-- baru ku bikinin yg buat search, tulung stylenyaa. sama di page ini card nya beda dari yg lain -->
 
+    <?php
+      include_once '../controller/control.php';
+      $control = new Control();
+
+      if (isset($_GET['search'])) {
+        $identifier = $_GET['identifier'];
+        $action = $control->c_searchMovie($identifier);
+        
+        foreach($action as $result) {
+    ?>
+    
       <!-- search result -->
+    <div>
+      <h3>Title: <?php echo $result['Title'] ?></h3>
+      <h6>Duration: <?php echo $result['Duration'] ?></h6>
+      <h6>Release Date: <?php echo $result['year'] ?></h6>
+      <h6>Genre: <?php echo $result['GenreName'] ?></h6><br>
+
       <?php
-      // foreach () {  loop through search result here
+        if ($result['Stock'] > 0 ) {
       ?>
-      <div>
-        <img src="" alt="">
-        <h3>Title</h3>
-        <h6>Duration:</h6>
-        <h6>Release Date:</h6>
-        <h6>Genre:</h6><br>
-        <p>Available to rent</p>
-        <button>More Detail</button>
-      </div>
+      <p>Available to rent</p>
       <?php
-      // } end loop
+        }
       ?>
+      <button>More Detail</button>
     </div>
+
+    <?php
+        }
+      } 
+    ?>
 </body>
 </html>
