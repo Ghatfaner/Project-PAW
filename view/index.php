@@ -226,8 +226,7 @@ if (!isset($_SESSION['userId'])) {
 
   <div class="container-card mt-5 mb-5">
     <div class="row px-5">
-
-    <h3 class="mb-3">Popular Actions</h3>
+      <h3 class="mb-3">Popular Actions</h3>
 
     <?php
       foreach ($result as $action) {
@@ -289,6 +288,39 @@ if (!isset($_SESSION['userId'])) {
     </div>
   </div>
 
+  <?php
+    $result = $control->c_popularHorror();
+  ?>
+
+  <div class="container-card mt-5 mb-5">
+    <div class="row px-5">
+      <h3 class="mb-3">Popular Horror</h3>
+
+      <?php
+      foreach ($result as $horror) {
+      ?>
+      
+      <div class="col-3">
+        <div class="card border border-0">
+          <img src="../pictures/movie-wide/<?php echo $horror['MovieId'] ?>.png" class="card-img-top" alt="...">
+          <div class="card-body-documentary">
+            <h5 class="card-title-documentary">How Film-maker Make: </br><?php echo $horror['Title'] ?></h5>
+            <div class="card-text-documentary">
+              <span><?php echo $horror['year'] ?></span> <span class="mx-1 rounded p-1 bg-secondary"><?php echo $horror['AgeRating'] ?></span> <span class="rounded p-1 bg-secondary"><?php echo $horror['GenreName'] ?></span>
+              <p><?php echo $horror['Synopsis'] ?></p>
+            </div>
+            <div class="card-btn"><a href="detail.php?movieId=<?= $horror['MovieId'] ?>" class="btn">More Details</a></div>
+          </div>
+        </div>
+      </div>
+
+      <?php
+        }
+      ?>
+
+    </div>
+  </div>
+
   <div class="px-5">
     <div class="card rounded">
       <img src="../pictures/thumbnail/thumbnail-1.png" alt="" class="card-img">
@@ -299,6 +331,105 @@ if (!isset($_SESSION['userId'])) {
           <a href="../view/search.php" class="btn px-3 py-2">Explore more</a>
         </div>
       </div>
+    </div>
+  </div>
+
+  <?php
+    $result = $control->c_popularComedy();
+  ?>
+
+  <div class="container-card mt-5 mb-5">
+    <div class="row px-5">
+      <h3 class="mb-3">Popular Comedy</h3>
+
+      <?php
+      foreach ($result as $comedy) {
+      ?>
+      
+      <div class="col-3">
+        <div class="card border border-0">
+          <img src="../pictures/movie-wide/<?php echo $comedy['MovieId'] ?>.png" class="card-img-top" alt="...">
+          <div class="card-body-documentary">
+            <h5 class="card-title-documentary">How Film-maker Make: </br><?php echo $comedy['Title'] ?></h5>
+            <div class="card-text-documentary">
+              <span><?php echo $comedy['year'] ?></span> <span class="mx-1 rounded p-1 bg-secondary"><?php echo $comedy['AgeRating'] ?></span> <span class="rounded p-1 bg-secondary"><?php echo $comedy['GenreName'] ?></span>
+              <p><?php echo $comedy['Synopsis'] ?></p>
+            </div>
+            <div class="card-btn"><a href="detail.php?movieId=<?= $comedy['MovieId'] ?>" class="btn">More Details</a></div>
+          </div>
+        </div>
+      </div>
+
+      <?php
+        }
+      ?>
+
+    </div>
+  </div>
+
+  <?php
+    $result = $control->c_popularScifi();
+  ?>
+
+  <div class="container-card mt-5 mb-5">
+    <div class="row px-5">
+      <h3 class="mb-3">Popular Science Fiction</h3>
+
+      <?php
+      foreach ($result as $scifi) {
+      ?>
+      
+      <div class="col-3">
+        <div class="card border border-0">
+          <img src="../pictures/movie-wide/<?php echo $scifi['MovieId'] ?>.png" class="card-img-top" alt="...">
+          <div class="card-body-documentary">
+            <h5 class="card-title-documentary">How Film-maker Make: </br><?php echo $scifi['Title'] ?></h5>
+            <div class="card-text-documentary">
+              <span><?php echo $scifi['year'] ?></span> <span class="mx-1 rounded p-1 bg-secondary"><?php echo $scifi['AgeRating'] ?></span> <span class="rounded p-1 bg-secondary"><?php echo $scifi['GenreName'] ?></span>
+              <p><?php echo $scifi['Synopsis'] ?></p>
+            </div>
+            <div class="card-btn"><a href="detail.php?movieId=<?= $scifi['MovieId'] ?>" class="btn">More Details</a></div>
+          </div>
+        </div>
+      </div>
+
+      <?php
+        }
+      ?>
+
+    </div>
+  </div>
+
+  <?php
+    $result = $control->c_popularAnimation();
+  ?>
+
+  <div class="container-card mt-5 mb-5">
+    <div class="row px-5">
+      <h3 class="mb-3">Popular Animation</h3>
+
+      <?php
+      foreach ($result as $animation) {
+      ?>
+      
+      <div class="col-3">
+        <div class="card border border-0">
+          <img src="../pictures/movie-wide/<?php echo $animation['MovieId'] ?>.png" class="card-img-top" alt="...">
+          <div class="card-body-documentary">
+            <h5 class="card-title-documentary">How Film-maker Make: </br><?php echo $animation['Title'] ?></h5>
+            <div class="card-text-documentary">
+              <span><?php echo $animation['year'] ?></span> <span class="mx-1 rounded p-1 bg-secondary"><?php echo $animation['AgeRating'] ?></span> <span class="rounded p-1 bg-secondary"><?php echo $animation['GenreName'] ?></span>
+              <p><?php echo $animation['Synopsis'] ?></p>
+            </div>
+            <div class="card-btn"><a href="detail.php?movieId=<?= $animation['MovieId'] ?>" class="btn">More Details</a></div>
+          </div>
+        </div>
+      </div>
+
+      <?php
+        }
+      ?>
+
     </div>
   </div>
 
