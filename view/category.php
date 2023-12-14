@@ -207,7 +207,7 @@
               <span class="rounded p-1 bg-secondary">$<?php echo $sort['Price'] ?></span>
               <p><?php echo $sort['Synopsis'] ?></p>
             </div>
-            <div class="card-btn"><a href="#" class="btn">More Detail</a></div>
+            <div class="card-btn"><a href="detail.php?movieId=<?= $sort['MovieId'] ?>" class="btn">More Detail</a></div>
           </div>
         </div>
       </div>
