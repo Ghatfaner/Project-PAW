@@ -111,7 +111,7 @@
     }
 
     public function m_searchMovie($identifier) {
-      return $this->database->query("SELECT MovieId, Title, Duration, ReleaseDate, GenreName, Stock
+      return $this->database->query("SELECT MovieId, Title, Duration, year(ReleaseDate) as year, GenreName, Stock
                                      from movie
                                      natural join genre
                                      where Title like concat('%', '$identifier', '%') or
