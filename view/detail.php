@@ -33,7 +33,7 @@ if (!isset($_SESSION['userId'])) {
       color: gold;
     }
     .navbar {
-      background-color: #005B41;
+      background-color: #232D3F;
     }
     .navbar-brand img {
       width: 100%;
@@ -72,7 +72,7 @@ if (!isset($_SESSION['userId'])) {
       margin: 0 0;
     }
     .movie-details-img {
-      max-width: 20rem;
+      max-width: 18rem;
     }
   </style>
 
@@ -133,15 +133,21 @@ if (!isset($_SESSION['userId'])) {
           <span class="fs-5 fw-medium">Check details below</span>
         </div>
 
-        <a href="../view/rent.php?movieId=<?= $result['MovieId'] ?>" class="btn px-3 py-2 fs-4 fw-semibold <?php echo ($result['Stock'] == 0) ? 'disabled bg-success' : '' ?>">
-        <?php
-        if ($result['Stock'] > 0) {
-        echo "Rent for $" . $result['price'];
-        } else {
-        echo "Out of Stock";
-        }
-        ?>
-        </a>
+        <div class="d-flex flex-row gap-3">
+          <a href="../view/rent.php?movieId=<?= $result['MovieId'] ?>" class="btn px-3 py-2 fs-4 fw-semibold <?php echo ($result['Stock'] == 0) ? 'disabled bg-success' : '' ?>">
+          <?php
+          if ($result['Stock'] > 0) {
+          echo "Rent for $" . $result['price'];
+          } else {
+          echo "Out of Stock";
+          }
+          ?>
+          </a>
+
+          <a href="../view/bookmark.php?movieId=<?= $result['MovieId'] ?>" class="btn px-3 py-2 fs-4 fw-semibold rounded-circle">
+          <i class="fa-solid fa-bookmark fa-lg"></i>
+          </a>
+        </div>
 
       </div>
     </div>
@@ -165,63 +171,72 @@ if (!isset($_SESSION['userId'])) {
           <div class="duration d-flex flex-row gap-2">
             <div class="d-flex flex-row align-items-center gap-2">
               <i class="fas fa-clock fa-lg"></i>
-              <p class="fs-5 fw-semibold">Duration: <?php echo $result['Duration'] ?></p>
+              <p class="fs-5 fw-semibold">Duration: </p>
+              <p class="fs-5 fw-normal"><?php echo $result['Duration'] ?></p>
             </div>
           </div>
 
           <div class="release-date d-flex flex-row gap-2">
             <div class="d-flex flex-row align-items-center gap-2">
               <i class="fas fa-calendar-days fa-lg"></i>
-              <p class="fs-5 fw-semibold">Release Date: <?php echo $result['ReleaseDate'] ?></p>
+              <p class="fs-5 fw-semibold">Release Date: </p>
+              <p class="fs-5 fw-normal"><?php echo $result['ReleaseDate'] ?></p>
             </div>
           </div>
 
           <div class="age-rating d-flex flex-row gap-2">
             <div class="d-flex flex-row align-items-center gap-2">
               <i class="fas fa-user-group fa-lg"></i>
-              <p class="fs-5 fw-semibold">Age Rating: <?php echo $result['AgeRating'] ?></p>
+              <p class="fs-5 fw-semibold">Age Rating: </p>
+              <p class="fs-5 fw-normal"><?php echo $result['AgeRating'] ?></p>
             </div>
           </div>
 
           <div class="genre d-flex flex-row gap-2">
             <div class="d-flex flex-row align-items-center gap-2">
               <i class="fas fa-masks-theater fa-lg"></i>
-              <p class="fs-5 fw-semibold">Genre: <?php echo $result['GenreName'] ?></p>
+              <p class="fs-5 fw-semibold">Genre: </p>
+              <p class="fs-5 fw-normal"><?php echo $result['GenreName'] ?></p>
             </div>
           </div>
 
           <div class="actors d-flex flex-row gap-2">
             <div class="d-flex flex-row align-items-center gap-2">
               <i class="fas fa-user-secret fa-lg"></i>
-              <p class="fs-5 fw-semibold">Actor: <?php echo $result['actor'] ?></p>
+              <p class="fs-5 fw-semibold">Actor: </p>
+              <p class="fs-5 fw-normal"><?php echo $result['actor'] ?></p>
             </div>
           </div>
 
           <div class="director d-flex flex-row gap-2">
             <div class="d-flex flex-row align-items-center gap-2">
               <i class="fas fa-user-tie fa-lg"></i>
-              <p class="fs-5 fw-semibold">Director: <?php echo $result['DirectorName'] ?></p>
+              <p class="fs-5 fw-semibold">Director: </p>
+              <p class="fs-5 fw-normal"><?php echo $result['DirectorName'] ?></p>
             </div>
           </div>
 
           <div class="production-company d-flex flex-row gap-2">
             <div class="d-flex flex-row align-items-center gap-2">
               <i class="fas fa-building fa-lg"></i>
-              <p class="fs-5 fw-semibold">Production Company: <?php echo $result['CompaniesName'] ?></p>
+              <p class="fs-5 fw-semibold">Production Company: </p>
+              <p class="fs-5 fw-normal"><?php echo $result['CompaniesName'] ?></p>
             </div>
           </div>
 
           <div class="rent-price d-flex flex-row gap-2">
             <div class="d-flex flex-row align-items-center gap-2">
               <i class="fas fa-money-bill-wave fa-lg"></i>
-              <p class="fs-5 fw-semibold">Rent Price: <?php echo $result['price'] ?></p>
+              <p class="fs-5 fw-semibold">Rent Price: </p>
+              <p class="fs-5 fw-normal"><?php echo $result['price'] ?></p>
             </div>
           </div>
 
           <div class="stock d-flex flex-row gap-2">
             <div class="d-flex flex-row align-items-center gap-2">
               <i class="fas fa-layer-group fa-lg"></i>
-              <p class="fs-5 fw-semibold">Stock: <?php echo $result['Stock'] ?></p>
+              <p class="fs-5 fw-semibold">Stock: </p>
+              <p class="fs-5 fw-normal"><?php echo $result['Stock'] ?></p>
             </div>
           </div>
         </div>

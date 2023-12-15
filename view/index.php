@@ -493,7 +493,7 @@ if (!isset($_SESSION['userId'])) {
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body d-flex justify-content-center">
-                    <iframe width="720" height="420" src="https://www.youtube.com/embed/HMimPzPGMwc?si=Vf21M-cLur_i4pVY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <iframe width="720" height="420" src="https://www.youtube.com/embed/2_l2v4YBxlQ?si=VwM3NQpoYw54fhHG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -508,7 +508,7 @@ if (!isset($_SESSION['userId'])) {
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body d-flex justify-content-center">
-                    <iframe width="720" height="420" src="https://www.youtube.com/embed/XIUj7oESpRM?si=p8aCN8oRqf4uSdkN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <iframe width="720" height="420" src="https://www.youtube.com/embed/4NU9ikjqjC0?si=w1i3FFlaCPeXsiEF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
