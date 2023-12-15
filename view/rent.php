@@ -193,7 +193,7 @@ if(!isset($_SESSION['userId'])) {
         </div>
         <!-- Form -->
         <div class="py-5">
-          <form class="d-flex flex-column gap-2" action="rentSuccess.php" method="POST">
+          <form class="d-flex flex-column gap-2" action="rent.php" method="POST">
             <div class="row">
               <div class="col">
                 <div class="fs-5 mb-1 fw-medium">Username</div>
@@ -244,6 +244,24 @@ if(!isset($_SESSION['userId'])) {
         </div>
 
         <?php
+          }
+          if (isset($_POST['submit'])) {
+            $movieId = $_POST['movieId'];
+            $userId = $_POST['userId'];
+            $username = $_POST['username'];
+            $phoneNumber = $_POST['phone'];
+            $address = $_POST['address'];
+            $paymentMethod = $_POST['payment'];
+          
+            $action = $control->c_rent($userId, $movieId, $username, $address, $phoneNumber, $paymentMethod);
+
+            if ($action == NULL) {
+              echo "<script>alert('Rent Success!')</script>";
+              echo "<script>window.location.href = 'index.php'</script>";
+            } else {
+              echo "<script>alert('Rent Failed!')</script>";
+              echo "<script>window.location.href = 'index.php'</script>";
+            }
           }
         ?>
       </div>
