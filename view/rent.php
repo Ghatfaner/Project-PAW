@@ -216,13 +216,13 @@ if(!isset($_SESSION['userId'])) {
             <div class="col">
             <div class="mb-1 fs-5 fw-medium">Payment Method</div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="payment" value="cash">
+                <input class="form-check-input" type="radio" name="payment" value="Cash">
                 <label class="form-check-label">
                   Cash
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="payment" value="debit">
+                <input class="form-check-input" type="radio" name="payment" value="Debit">
                 <label class="form-check-label">
                   Debit/QRIS
                 </label>
