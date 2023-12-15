@@ -232,11 +232,11 @@
                               where MovieId = '$movieId'; ");
     }
 
-    public function m_getRentHistory($rentId) {
-      return $this->database->query("SELECT rent.username, title, paymentmethod, price, rentdate, returndate, status
+    public function m_getRentHistory($userId) {
+      return $this->database->query("SELECT username, title, paymentmethod, price, rentdate, returndate, status
                                      from rent
                                      join Movie on Movie.MovieId = rent.MovieId
-                                     where rentId = '$rentId'; ");
+                                     where rent.userId = '$userId'; ");
     }
 
     public function m_return($rentId, $movieId) {
