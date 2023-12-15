@@ -144,7 +144,8 @@ if (!isset($_SESSION['userId'])) {
           ?>
           </a>
 
-          <a href="../view/bookmark.php?movieId=<?= $result['MovieId'] ?>" class="btn px-3 py-2 fs-4 fw-semibold rounded-circle">
+          <a href="../view/realBookmark.php?movieId=<?= $result['MovieId'] ?>" class="btn px-3 py-2 fs-4 fw-semibold rounded-circle">
+          <!-- buat tombol bookmark jgn pake href, arahin ke logicnya buat tambah bookmark di file ini. baru lempar ke realBookmark.php -->
           <i class="fa-solid fa-bookmark fa-lg"></i>
           </a>
         </div>
