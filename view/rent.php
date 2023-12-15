@@ -257,10 +257,10 @@ if(!isset($_SESSION['userId'])) {
 
             if ($action == NULL) {
               echo "<script>alert('Rent Success!')</script>";
-              echo "<script>window.location.href = 'index.php'</script>";
+              echo "<script>window.location.href = '../view/profile.php'</script>";
             } else {
               echo "<script>alert('Rent Failed!')</script>";
-              echo "<script>window.location.href = 'index.php'</script>";
+              echo "<script>window.location.href = '../view/index.php'</script>";
             }
           }
         ?>

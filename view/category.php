@@ -113,8 +113,8 @@
         <img src="../pictures/Logo-Light-Small.png" alt="">
       </a>
 
-      <div class="d-flex justify-content-end" id="navbarNav">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <div class="d-flex justify-content-end">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
           <li class="nav-item">
             <a class="nav-link text-white-50" aria-current="page" href="../view/index.php">Home</a>
           </li>
@@ -127,8 +127,9 @@
           <li class="nav-item">
             <a class="nav-link text-white-50" href="../view/bookmark.php">Bookmark</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-white-50" href="../view/profile.php">Profile</a>
+          <li class="nav-item d-flex flex-row align-items-center px-2 py-1">
+            <i href="../view/profile.php" class="fas fa-user-circle fa-2x text-white"></i>
+            <a class="nav-link text-white" href="../view/profile.php">Profile</a>
           </li>
         </ul>
       </div>
