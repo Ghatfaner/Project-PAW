@@ -6,41 +6,13 @@ $database = "paw";
 $username = "root";
 $password = "";
 
-// $conn = mysqli_connect($servername, $username, $password, $database);
-// mengecek koneksiit
-//if (!$conn) {
-//    die("Koneksi gagal: " . mysqli_connect_error());
-//}
-//mysqli_close($conn);
-
-$bookmarkedMovies = array(
-    array(
-        "title" => "Spider-Man: Into The Spider-Verse",
-        "duration" => "120 minutes",
-        "release_date" => "2018",
-        "genre" => "Action"
-    ),
-    array(
-        "title" => "Avatar",
-        "duration" => "150 minutes",
-        "release_date" => "2009",
-        "genre" => "Adventure"
-    ),
-    array(
-        "title" => "The Dark Knight",
-        "duration" => "152 minutes",
-        "release_date" => "2008",
-        "genre" => "Action"
-    ),
-    array(
-        "title" => "Titanic",
-        "duration" => "195 minutes",
-        "release_date" => "1997",
-        "genre" => "Romance"
-    )
-);
+$conn = mysqli_connect($servername, $username, $password, $database);
+if (!$conn) {
+   die("Koneksi gagal: " . mysqli_connect_error());
+}
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -71,7 +43,7 @@ $bookmarkedMovies = array(
 </head>
 
 <body>
-
+    
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
         <img src="logo.png" alt="logo" class="logo" width="165px" height="48px">
@@ -110,23 +82,28 @@ $bookmarkedMovies = array(
 
             </div>
             <div class="Frame59" style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
-                <?php foreach ($bookmarkedMovies as $index => $movie) : ?>
+                <?php $ambil = $conn->query("SELECT movie. *, genre.GenreName FROM movie
+                                                JOIN bookmark ON movie.MovieId = bookmark.MovieId
+                                                JOIN genre ON movie.GenreId = genre.GenreId
+                                                WHERE bookmark.UserId = 1 AND bookmark.MovieId");?>        
+                <?php if ($ambil){?>
+                <?php while ($movie = $ambil->fetch_assoc()) { ?>
                     <div class="MovieCardSearch" style="width: 1344px; padding: 48px; background: #232D3F; border-radius: 12px; justify-content: flex-start; align-items: center; gap: 48px; display: inline-flex">
                         <div class="Frame50" style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 32px; display: inline-flex">
                             <div class="Frame49" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
-                                <div class="MovieTitle" style="color: #E6EFEC; font-size: 39px; font-weight: 600; line-height: 46.80px; word-wrap: break-word"><?php echo $movie['title']; ?></div>
+                                <div class="MovieTitle" style="color: #E6EFEC; font-size: 39px; font-weight: 600; line-height: 46.80px; word-wrap: break-word"><?php echo $movie['Title']; ?></div>
                                 <div class="Frame41" style="height: 96px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 12px; display: flex">
                                     <div class="Frame35" style="align-self: stretch; justify-content: flex-start; align-items: flex-end; gap: 8px; display: inline-flex">
                                         <div class="Duration" style="color: #E6EFEC; font-size: 20px; font-weight: 600; line-height: 24px; word-wrap: break-word">Duration:</div>
-                                        <div class="MovieDuration" style="flex: 1 1 0; color: #E6EFEC; font-size: 20px; font-weight: 400; line-height: 24px; word-wrap: break-word"><?php echo $movie['duration']; ?></div>
+                                        <div class="MovieDuration" style="flex: 1 1 0; color: #E6EFEC; font-size: 20px; font-weight: 400; line-height: 24px; word-wrap: break-word"><?php echo $movie['Duration']; ?></div>
                                     </div>
                                     <div class="Frame36" style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
                                         <div class="ReleaseDate" style="color: #E6EFEC; font-size: 20px; font-weight: 600; line-height: 24px; word-wrap: break-word">Release Date:</div>
-                                        <div class="MovieReleaseDate" style="flex: 1 1 0; color: #E6EFEC; font-size: 20px; font-weight: 400; line-height: 24px; word-wrap: break-word"><?php echo $movie['release_date']; ?></div>
+                                        <div class="MovieReleaseDate" style="flex: 1 1 0; color: #E6EFEC; font-size: 20px; font-weight: 400; line-height: 24px; word-wrap: break-word"><?php echo $movie['ReleaseDate']; ?></div>
                                     </div>
                                     <div class="Frame37" style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
                                         <div class="Genre" style="color: #E6EFEC; font-size: 20px; font-weight: 600; line-height: 24px; word-wrap: break-word">Genre:</div>
-                                        <div class="MovieGenre" style="flex: 1 1 0; color: #E6EFEC; font-size: 20px; font-weight: 400; line-height: 24px; word-wrap: break-word"><?php echo $movie['genre']; ?></div>
+                                        <div class="MovieGenre" style="flex: 1 1 0; color: #E6EFEC; font-size: 20px; font-weight: 400; line-height: 24px; word-wrap: break-word"><?php echo $movie['GenreName']; ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -143,7 +120,8 @@ $bookmarkedMovies = array(
                             </div>
                         </div>
                     </div>
-                <?php endforeach; ?>
+                <?php } ?>
+                <?php } ?>
             </div>
         </div>
     </div>
