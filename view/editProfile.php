@@ -1,5 +1,9 @@
 <?php
-session_start();
+  session_start();
+  if (!isset($_SESSION['userId'])) {
+    header('Location: ../view/login.php');
+    die();
+  }
 ?>
 
 <!DOCTYPE html>
@@ -39,35 +43,8 @@ session_start();
       </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container-fluid px-4">
 
-      <a class="navbar-brand" href="../view/index.php">
-        <img src="../pictures/Logo-Light-Small.png" alt="">
-      </a>
 
-      <div class="d-flex justify-content-end" id="navbarNav">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link text-white mx-2" aria-current="page" href="../view/index.php">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white-50 mx-2" href="../view/search.php">Search</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white-50 mx-2" href="../view/category.php">Category</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white-50 mx-2" href="../view/bookmark.php">Bookmark</a>
-          </li>
-          <li class="nav-item me-lg-5 bg-light rounded px-1 d-flex">
-          <i class="bi bi-person-fill mt-2" style="color: #005B41;"></i>
-          <a class="nav-link active fw-bold mx-2" aria-current="page" style="color: #005B41;" href="profile.php">Profile</a>
-        </li>
-        </ul>
-      </div>
-    </div>
-</nav>
 
 <?php
 if(isset($_FILES['image'])) {
@@ -112,55 +89,59 @@ if(isset($_FILES['image'])) {
 </div>
 
 <?php
-require_once "../connDB.php";
-require_once "../controller/control.php";
-$sql = new control();
-if(isset($_POST['save'])){
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $address = $_POST['address'];
-    $phone = $_POST['phone'];
-    $occupation = $_POST['occupation'];
+  include_once "../controller/control.php";
+  $control = new control();
 
-    $result=$sql->c_updateProfile($userId, $username, $email, $password, $address, $phoneNumber, $occupation);
-    $hasil= $result->c_getProfile($userId);
+  if(isset($_POST['save'])){
+    $userId = $_SESSION['userId'];
+    $username = $_POST['Username'];
+    $email = $_POST['Email'];
+    $address = $_POST['Address'];
+    $phone = $_POST['PhoneNumber'];
+    $occupation = $_POST['Occupation'];
 
-}
+    $action = $control->c_updateProfile($userId, $username, $email, $address, $phoneNumber, $occupation);
+  }
+
+  if(isset($_POST['cancel'])){
+    header('Location: profile.php');
+  }
+
+  $action = $control->c_getProfile($_SESSION['userId']);
+  foreach ($action as $result) {
 
 ?>
-<form class="row g-2 text-light" method="post">
+<form class="row g-2 text-light" method="POST" action="editProfile.php">
   <div class="col-lg-12">
     <div class="col-12 mx-5 mt-3">
-      <label for="inputAddress" class="form-label">Username</label><br>
-      <input type="text" class="form-control" id="username" placeholder="username" value="<?php echo $_SESSION['username']?>">
+      <label for="inputAddress" class="form-label">User Name</label><br>
+      <input type="text" class="form-control" name="Username" placeholder="<?php echo $result['Username'] ?>">
     </div>
     <div class="col-12 mx-5 mt-3">
       <label for="inputAddress" class="form-label">Email</label><br>
-      <input type="text" class="form-control" id="email" placeholder="email">
-    </div>
-    <div class="col-12 mx-5 mt-3">
-      <label for="inputAddress" class="form-label">Password</label><br>
-      <input type="text" class="form-control" id="password" placeholder="password">
+      <input type="email" class="form-control" name="Email" placeholder="<?php echo $result['Email'] ?>">
     </div>
     <div class="col-12 mx-5 mt-3">
       <label for="inputAddress" class="form-label">Address</label><br>
-      <input type="text" class="form-control" id="address" placeholder="address">
+      <input type="text" class="form-control" name="Address" placeholder="<?php echo $result['Address'] ?>">
     </div>
     <div class="col-12 mx-5 mt-3">
       <label for="inputAddress" class="form-label">Phone Number</label><br>
-      <input type="text" class="form-control" id="phone" placeholder="phonenumber">
+      <input type="number" class="form-control" name="PhoneNumber" placeholder="<?php echo $result['PhoneNumber'] ?>">
     </div>
     <div class="col-12 mx-5 mt-3">
       <label for="inputAddress" class="form-label">Occupation</label><br>
-      <input type="text" class="form-control" id="occupation" placeholder="occupation">
+      <input type="text" class="form-control" name="Occupation" placeholder="<?php echo $result['Occupation'] ?>">
     </div>
   </div>
-    <button type="submit" class="btn btn-success mx-5 mt-5" name="save" id="save">Save Changes</button><br>
-    <button type="button" class="btn btn-outline-light mx-5 mb-5" name="cancel" id="cancel">Cancel</button>
+    <button type="submit" class="btn btn-success mx-5 mt-5" name="save">Save Changes</button><br>
+    <button type="button" class="btn btn-outline-light mx-5 mb-5" name="cancel">Cancel</button>
 </form>
-</div>
 
+<?php
+  }
+?>
+<!-- 
 <script src="../js/jquery-3.7.1.min.js">
     $('#upload').on('click', function(){
       let formData = new formData();
@@ -187,6 +168,6 @@ if(isset($_POST['save'])){
     });
 
 </script>
-    
+     -->
 </body>
 </html>

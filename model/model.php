@@ -174,12 +174,11 @@
                                      order by ReleaseDate desc;"); 
     }
 
-    public function m_updateProfile($userId, $username, $email, $password, $address, $phoneNumber, $occupation) {
+    public function m_updateProfile($userId, $username, $email, $address, $phoneNumber, $occupation) {
       $this->database->query("UPDATE user
                               set
                                   Username = case when '$username' = '' then Username else '$username' end,
                                   Email = case when '$email' = '' then Email else '$email' end,
-                                  Password = case when '$password' = '' then Password else '$password' end,
                                   Address = case when '$address' = '' then Address else '$address' end,
                                   PhoneNumber = case when '$phoneNumber' = '' then PhoneNumber else '$phoneNumber' end,
                                   Occupation = case when '$occupation' = '' then Occupation else '$occupation' end
@@ -187,7 +186,7 @@
     }
 
     public function m_getProfile($userId) {
-      return $this->database->query("SELECT Username, Email, Password, Address, PhoneNumber, Occupation
+      return $this->database->query("SELECT Username, Email, Address, PhoneNumber, Occupation
                                      from user
                                      where UserId = '$userId'; ");
     }
