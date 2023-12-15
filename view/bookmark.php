@@ -132,10 +132,11 @@ $bookmarkedMovies = array(
                             </div>
                             <div class="Frame52" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 12px; display: flex">
                                 <div class="Frame58" style="justify-content: flex-start; align-items: flex-start; gap: 12px; display: inline-flex">
-                                    <div class="Button" style="padding-left: 24px; padding-right: 24px; padding-top: 12px; padding-bottom: 12px; background: #E6EFEC; border-radius: 8px; justify-content: center; align-items: center; gap: 10px; display: flex">
+                                    
+                                <div class="Button" type="Button" style="padding-left: 24px; padding-right: 24px; padding-top: 12px; padding-bottom: 12px; background: #E6EFEC; border-radius: 8px; justify-content: center; align-items: center; gap: 10px; display: flex">
                                         <div class="Button" style="color: #0F0F0F; font-size: 20px; font-family: Inter; font-weight: 700; line-height: 24px; word-wrap: break-word">More details</div>
                                     </div>
-                                    <div class="AddButton" style="padding: 10px; background: #E6EFEC; border-radius: 50px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                                    <div class="AddButton" type="Button" style="padding: 10px; background: #E6EFEC; border-radius: 50px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
                                     <img src="bookmark.png" alt="bookmark" class="bookmark" width="35px" height="35px">    
                                     </div>
                                 </div>
@@ -148,5 +149,4 @@ $bookmarkedMovies = array(
     </div>
 
 </body>
-
 </html>
