@@ -4,9 +4,9 @@ class connDB {
   public $mysqli;
 
   public function __construct() {
-    $hostName = "127.0.0.1:3306";
+    $hostName = "localhost";
     $dbUser = "root";
-    $dbPass = "etherealZ4M.";
+    $dbPass = "";
     $dbName = "paw";
     $conn = mysqli_connect($hostName, $dbUser, $dbPass, $dbName);
     // ganti user ma password sesuai database masing2
