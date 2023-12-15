@@ -96,29 +96,30 @@ if(!isset($_SESSION['userId'])) {
         <p class="fs-2 fw-bold">Rent Movie DCP’s Form</p>
       </div>
 
-      <div class="form-card py-4 px-5 rounded shadow-lg">
+      <div class="form-card py-5 px-5 rounded shadow-lg">
         <!-- Movie Details & Form -->
         <?php
         $movieId = intval($_GET['movieId']);
         include_once "../controller/control.php";
         $control = new Control();
         $action = $control->c_detailMovie($movieId);
+
         foreach ($action as $result) {
         ?>
         <!-- Movie Image & Text -->
         <div class="movie-details d-flex flex-row gap-5 align-items-center">
-          <img src="../pictures/movie-tall/<?php echo $result['MovieId'] ?>.jpg" alt="" class="movie-details-img rounded shadow-lg">
+          <img src="../pictures/movie-tall/<?php echo $result['MovieId']; ?>.jpg" alt="" class="movie-details-img rounded shadow-lg">
 
           <div class="movie-details-text">
         
-          <h5 class="fs-1 fw-semibold mb-4">How Film-maker Make: </br> <?php echo $result['Title'] ?></h5>
+          <h5 class="fs-1 fw-semibold mb-4">How Film-maker Make: </br> <?php echo $result['Title']; ?></h5>
 
           <div class="d-flex flex-column gap-1">
             <div class="duration d-flex flex-row gap-2">
               <div class="d-flex flex-row align-items-center gap-2">
                 <i class="fas fa-clock fa-lg"></i>
                 <p class="fs-5 fw-semibold">Duration: </p>
-                <p class="fs-5 fw-normal"><?php echo $result['Duration'] ?></p>
+                <p class="fs-5 fw-normal"><?php echo $result['Duration']; ?></p>
               </div>
             </div>
 
@@ -126,7 +127,7 @@ if(!isset($_SESSION['userId'])) {
               <div class="d-flex flex-row align-items-center gap-2">
                 <i class="fas fa-calendar-days fa-lg"></i>
                 <p class="fs-5 fw-semibold">Release Date: </p>
-                <p class="fs-5 fw-normal"><?php echo $result['ReleaseDate'] ?></p>
+                <p class="fs-5 fw-normal"><?php echo $result['ReleaseDate']; ?></p>
               </div>
             </div>
 
@@ -134,7 +135,7 @@ if(!isset($_SESSION['userId'])) {
               <div class="d-flex flex-row align-items-center gap-2">
                 <i class="fas fa-user-group fa-lg"></i>
                 <p class="fs-5 fw-semibold">Age Rating: </p>
-                <p class="fs-5 fw-normal"><?php echo $result['AgeRating'] ?></p>
+                <p class="fs-5 fw-normal"><?php echo $result['AgeRating']; ?></p>
               </div>
             </div>
 
@@ -142,7 +143,7 @@ if(!isset($_SESSION['userId'])) {
               <div class="d-flex flex-row align-items-center gap-2">
                 <i class="fas fa-masks-theater fa-lg"></i>
                 <p class="fs-5 fw-semibold">Genre: </p>
-                <p class="fs-5 fw-normal"><?php echo $result['GenreName'] ?></p>
+                <p class="fs-5 fw-normal"><?php echo $result['GenreName']; ?></p>
               </div>
             </div>
 
@@ -150,7 +151,7 @@ if(!isset($_SESSION['userId'])) {
               <div class="d-flex flex-row align-items-center gap-2">
                 <i class="fas fa-user-secret fa-lg"></i>
                 <p class="fs-5 fw-semibold">Actor: </p>
-                <p class="fs-5 fw-normal"><?php echo $result['actor'] ?></p>
+                <p class="fs-5 fw-normal"><?php echo $result['actor']; ?></p>
               </div>
             </div>
 
@@ -158,7 +159,7 @@ if(!isset($_SESSION['userId'])) {
               <div class="d-flex flex-row align-items-center gap-2">
                 <i class="fas fa-user-tie fa-lg"></i>
                 <p class="fs-5 fw-semibold">Director: </p>
-                <p class="fs-5 fw-normal"><?php echo $result['DirectorName'] ?></p>
+                <p class="fs-5 fw-normal"><?php echo $result['DirectorName']; ?></p>
               </div>
             </div>
 
@@ -166,7 +167,7 @@ if(!isset($_SESSION['userId'])) {
               <div class="d-flex flex-row align-items-center gap-2">
                 <i class="fas fa-building fa-lg"></i>
                 <p class="fs-5 fw-semibold">Production Company: </p>
-                <p class="fs-5 fw-normal"><?php echo $result['CompaniesName'] ?></p>
+                <p class="fs-5 fw-normal"><?php echo $result['CompaniesName']; ?></p>
               </div>
             </div>
 
@@ -174,7 +175,7 @@ if(!isset($_SESSION['userId'])) {
               <div class="d-flex flex-row align-items-center gap-2">
                 <i class="fas fa-money-bill-wave fa-lg"></i>
                 <p class="fs-5 fw-semibold">Rent Price: </p>
-                <p class="fs-5 fw-normal"><?php echo $result['price'] ?></p>
+                <p class="fs-5 fw-normal"><?php echo $result['price']; ?></p>
               </div>
             </div>
 
@@ -182,7 +183,7 @@ if(!isset($_SESSION['userId'])) {
               <div class="d-flex flex-row align-items-center gap-2">
                 <i class="fas fa-layer-group fa-lg"></i>
                 <p class="fs-5 fw-semibold">Stock: </p>
-                <p class="fs-5 fw-normal"><?php echo $result['Stock'] ?></p>
+                <p class="fs-5 fw-normal"><?php echo $result['Stock']; ?></p>
               </div>
             </div>
           </div>
@@ -192,11 +193,11 @@ if(!isset($_SESSION['userId'])) {
         </div>
         <!-- Form -->
         <div class="py-5">
-          <form class="d-flex flex-column gap-2" action="rent.php" method="POST">
+          <form class="d-flex flex-column gap-2" action="rentSuccess.php" method="POST">
             <div class="row">
               <div class="col">
-                <div class="fs-5 mb-1 fw-medium">Occupation</div>
-                <input type="text" name="occupation" class="form-control rounded" placeholder="Occupation" required>
+                <div class="fs-5 mb-1 fw-medium">Username</div>
+                <input type="text" name="username" class="form-control rounded" placeholder="Username" required>
               </div>
               <div class="col">
                 <div class="fs-5 mb-1 fw-medium">Phone Number</div>
@@ -215,13 +216,13 @@ if(!isset($_SESSION['userId'])) {
             <div class="col">
             <div class="mb-1 fs-5 fw-medium">Payment Method</div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="cash">
+                <input class="form-check-input" type="radio" name="payment" value="cash">
                 <label class="form-check-label">
                   Cash
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="cashless">
+                <input class="form-check-input" type="radio" name="payment" value="debit">
                 <label class="form-check-label">
                   Debit/QRIS
                 </label>
@@ -230,19 +231,20 @@ if(!isset($_SESSION['userId'])) {
                 *Please double check your rent form. If the movie you’re booking is not what you mean, there are not the responsibilty of the Roovie, Inc.
               </p>
             </div>
-          </form>
-        </div>
 
-        <div class="d-flex flex-row justify-content-between">
-          <!-- button -->
-          <a href="detail.php?movieId=<?= $result['MovieId'] ?>" class="btn btn-outline-success px-4 fs-4">Cancel</a>
-          <a href="rent.php?movieId=<?= $result['MovieId'] ?>" class="btn btn-success px-4 fs-4">Submit</a>
+            <div class="d-flex flex-row justify-content-between mt-3">
+              <!-- button -->
+              <a href="detail.php?movieId=<?= $result['MovieId']; ?>" class="btn btn-outline-success px-4 fs-4">Cancel</a>
+
+              <input type="hidden" name="movieId" value="<?= $result['MovieId']; ?>">
+              <input type="hidden" name="userId" value="<?= $_SESSION['userId']; ?>">
+              <button type="submit" name="submit" class="btn btn-success px-4 fs-4">Submit</button>
+            </div>
+          </form>
         </div>
 
         <?php
           }
-          // tolong fan, logic buat ngambil nilai dari form diatas taroh di sini
-        
         ?>
       </div>
     </div>

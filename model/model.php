@@ -224,8 +224,8 @@
     }
 
     public function m_rent($userId, $movieId, $username, $address, $phoneNumber, $paymentMethod) {
-      $this->database->query("INSERT into rent (userid, movieid, username, address, phonenumber, paymentmethod, status, ReturnDate)
-                              values ($userId, $movieId, $username, $address, $phoneNumber, $paymentMethod, 'rent', current_timestamp + interval 3 day);");
+      return $this->database->query("INSERT into rent (Userid, Movieid, Username, Address, PhoneNumber, PaymentMethod, Status, ReturnDate)
+                                     values ('$userId', '$movieId', '$username', '$address', '$phoneNumber', '$paymentMethod', 'rent', current_timestamp + interval 3 day); ");
 
       $this->database->query("UPDATE movie 
                               set Stock = Stock - 1

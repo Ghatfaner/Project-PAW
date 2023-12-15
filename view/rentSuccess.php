@@ -1,3 +1,26 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['userId'])) {
+  header("Location: login.php");
+  die();
+}
+
+include_once "../controller/control.php";
+$control = new Control();
+
+if (isset($_POST['submit'])) {
+  $movieId = $_POST['movieId'];
+  $userId = $_POST['userId'];
+  $username = $_POST['username'];
+  $phoneNumber = $_POST['phone'];
+  $address = $_POST['address'];
+  $paymentMethod = $_POST['payment'];
+
+  $action = $control->c_rent($userId, $movieId, $username, $address, $phoneNumber, $paymentMethod);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
