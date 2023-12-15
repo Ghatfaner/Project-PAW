@@ -95,8 +95,8 @@
       include_once "../view/category.php";    
     }
 
-    public function c_updateProfile($userId, $username, $email, $password, $address, $phoneNumber, $occupation) {
-      $this->model->m_updateProfile($userId, $username, $email, $password, $address, $phoneNumber, $occupation);
+    public function c_updateProfile($userId, $username, $email, $address, $phoneNumber, $occupation) {
+      $this->model->m_updateProfile($userId, $username, $email, $address, $phoneNumber, $occupation);
       include_once "../view/editProfile.php";
     }
 

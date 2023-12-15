@@ -174,12 +174,11 @@
                                      order by ReleaseDate desc;"); 
     }
 
-    public function m_updateProfile($userId, $username, $email, $password, $address, $phoneNumber, $occupation) {
+    public function m_updateProfile($userId, $username, $email, $address, $phoneNumber, $occupation) {
       $this->database->query("UPDATE user
                               set
                                   Username = case when '$username' = '' then Username else '$username' end,
                                   Email = case when '$email' = '' then Email else '$email' end,
-                                  Password = case when '$password' = '' then Password else '$password' end,
                                   Address = case when '$address' = '' then Address else '$address' end,
                                   PhoneNumber = case when '$phoneNumber' = '' then PhoneNumber else '$phoneNumber' end,
                                   Occupation = case when '$occupation' = '' then Occupation else '$occupation' end
@@ -187,7 +186,7 @@
     }
 
     public function m_getProfile($userId) {
-      return $this->database->query("SELECT Username, Email, Password, Address, PhoneNumber, Occupation
+      return $this->database->query("SELECT Username, Email, Address, PhoneNumber, Occupation
                                      from user
                                      where UserId = '$userId'; ");
     }
@@ -224,7 +223,7 @@
     }
 
     public function m_rent($userId, $movieId, $username, $address, $phoneNumber, $paymentMethod) {
-      return $this->database->query("INSERT into rent (Userid, Movieid, Username, Address, PhoneNumber, PaymentMethod, Status, ReturnDate)
+      $this->database->query("INSERT into rent (Userid, Movieid, Username, Address, PhoneNumber, PaymentMethod, Status, ReturnDate)
                                      values ('$userId', '$movieId', '$username', '$address', '$phoneNumber', '$paymentMethod', 'rent', current_timestamp + interval 3 day); ");
 
       $this->database->query("UPDATE movie 
@@ -232,11 +231,11 @@
                               where MovieId = '$movieId'; ");
     }
 
-    public function m_getRentHistory($rentId) {
-      return $this->database->query("SELECT rent.username, title, paymentmethod, price, rentdate, returndate, status
+    public function m_getRentHistory($userId) {
+      return $this->database->query("SELECT username, title, paymentmethod, price, rentdate, returndate, status
                                      from rent
                                      join Movie on Movie.MovieId = rent.MovieId
-                                     where rentId = '$rentId'; ");
+                                     where rent.userId = '$userId'; ");
     }
 
     public function m_return($rentId, $movieId) {
