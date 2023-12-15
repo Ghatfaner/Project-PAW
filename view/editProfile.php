@@ -9,6 +9,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>ROOVIE - Edit Profilr</title>
     <style>
       body{
@@ -38,36 +39,59 @@ session_start();
       </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark">
-  <div class="container-fluid">
-    <img src="../pictures/logo-Light-Big.png" alt="logo" class="logo" width= "165px" height= "48px">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse " id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 fw-bold ">
-        <li class="nav-item me-lg-5 ">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container-fluid px-4">
+
+      <a class="navbar-brand" href="../view/index.php">
+        <img src="../pictures/Logo-Light-Small.png" alt="">
+      </a>
+
+      <div class="d-flex justify-content-end" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-white mx-2" aria-current="page" href="../view/index.php">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white-50 mx-2" href="../view/search.php">Search</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white-50 mx-2" href="../view/category.php">Category</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white-50 mx-2" href="../view/bookmark.php">Bookmark</a>
+          </li>
+          <li class="nav-item me-lg-5 bg-light rounded px-1 d-flex">
+          <i class="bi bi-person-fill mt-2" style="color: #005B41;"></i>
+          <a class="nav-link active fw-bold mx-2" aria-current="page" style="color: #005B41;" href="profile.php">Profile</a>
         </li>
-        <li class="nav-item me-lg-5">
-          <a class="nav-link active" aria-current="page" href="#">Adv. Search</a>
-        </li>
-        <li class="nav-item me-lg-5">
-          <a class="nav-link active" aria-current="page" href="#">Category</a>
-        </li>
-        <li class="nav-item me-lg-5">
-          <a class="nav-link active" aria-current="page" href="#">Bookmark</a>
-        </li>
-        <li class="nav-item me-lg-5 bg-light rounded px-2">
-          <i class="bi bi-person-fill" style="color: #005B41;"></i>
-          <a class="nav-link active" aria-current="page" style="color: #005B41;" href="profile.php">Profile</a>
-        </li> 
-      </ul>
+        </ul>
+      </div>
     </div>
-  </div>
 </nav>
 
+<?php
+if(isset($_FILES['image'])) {
+  $errors = [];
+  $filename = $_FILES['image']['name'];
+  $filesize = $_FILES['image']['size'];
+  $filetmp = $_FILES['image']['tmpname'];
+  $filetype = $_FILES['image']['type'];
+  $fileext = strtolower(end(explode('.', $_FILES['image']['name'])));
 
+  $extensions = ['jpeg', 'jpg', 'png'];
+
+  if(in_array($fileext, $extensions) === false){
+    $errors[] = "please choose a jpeg, jpg or png files";
+  }
+
+  if (empty($errors) == true) {
+    move_uploaded_file($file_tmp, "images/".$file_name);
+    echo "Success!";
+ } else {
+    print_r($errors);
+}
+}
+?>
 
 <div class="container mt-5 ">
 <div class="profile-pic">
@@ -75,7 +99,15 @@ session_start();
   </label>
   <!-- <input id="file" type="file" onchange="loadFile(event)"/> -->
   <div class="d-flex justify-content-center">
-    <img src="../pictures/regist-img-1.png" alt="Profile Picture" id="output" class="profile-pic-small" />
+    <img src="../pictures/profpic.jpeg" alt="Profile Picture" id="output" class="profile-pic-small" />
+  </div>
+  <div class="d-flex justify-content-center mt-3">
+    <form enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="image">Choose image</label>
+        <input type="file" class="form-control" id="image" name="image" accept="image/*">
+      </div>
+      <button type="button" class="btn btn-outline-light mt-3" id="upload">Upload</button>
   </div>
 </div>
 
@@ -92,6 +124,7 @@ if(isset($_POST['save'])){
     $occupation = $_POST['occupation'];
 
     $result=$sql->c_updateProfile($userId, $username, $email, $password, $address, $phoneNumber, $occupation);
+    $hasil= $result->c_getProfile($userId);
 
 }
 
@@ -123,11 +156,37 @@ if(isset($_POST['save'])){
       <input type="text" class="form-control" id="occupation" placeholder="occupation">
     </div>
   </div>
-    <button type="submit" class="btn btn-success mx-5 mt-5" name="save">Save Changes</button><br>
-    <button type="button" class="btn btn-outline-light mx-5 mb-5" name="cancel">Cancel</button>
+    <button type="submit" class="btn btn-success mx-5 mt-5" name="save" id="save">Save Changes</button><br>
+    <button type="button" class="btn btn-outline-light mx-5 mb-5" name="cancel" id="cancel">Cancel</button>
 </form>
 </div>
 
+<script src="../js/jquery-3.7.1.min.js">
+    $('#upload').on('click', function(){
+      let formData = new formData();
+      let file = $('#image'[0].files[0]);
+      formData.append('image', file);
+
+      $.ajax({
+        url: 'editProfile.php',
+        type: 'post',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response){
+          console.log(response);
+        },
+        error: function(response){
+          console.log(response);
+        }
+      })
+    });
+
+    $('#cancel').on('click', function(){
+      window.location = 'profile.php';
+    });
+
+</script>
     
 </body>
 </html>
