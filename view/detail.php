@@ -144,7 +144,8 @@ if (!isset($_SESSION['userId'])) {
           ?>
           </a>
 
-          <a href="../view/bookmark.php?movieId=<?= $result['MovieId'] ?>" class="btn px-3 py-2 fs-4 fw-semibold rounded-circle">
+          <a href="../view/realBookmark.php?movieId=<?= $result['MovieId'] ?>" class="btn px-3 py-2 fs-4 fw-semibold rounded-circle">
+          <!-- buat tombol bookmark jgn pake href, arahin ke logicnya buat tambah bookmark di file ini. baru lempar ke realBookmark.php -->
           <i class="fa-solid fa-bookmark fa-lg"></i>
           </a>
         </div>
@@ -248,6 +249,58 @@ if (!isset($_SESSION['userId'])) {
   <?php
     }
   ?>
+
+  <div>
+    <h5>Comment and Rating</h5>
+    <form action="" method="POST">
+      <div>
+        <label for="">Comment</label>
+        <input type="text" name="Comment" required>
+      </div>
+      <div>
+        <label for="">Rating</label>
+        <input type="number" name="Rating" required>
+      </div>
+      <div>
+        <input type="submit" name="submit" class="" value="rate">
+      </div>
+    </form>
+  </div>
+
+  <?php
+    if (isset($_POST['submit'])) {
+      $movieId = $_GET['movieId'];
+      $userId = $_SESSION['userId'];
+      $comment = $_POST['Comment'];
+      $rating = $_POST['Rating'];
+      if ($rating > 5) {
+        $rating = 5;
+      } else if ($rating < 0) {
+        $rating = 0;
+      }
+      $control->c_addRating($userId, $movieId, $comment, $rating);
+    }
+
+    $action = $control->c_getRating($movieId);
+
+    foreach ($action as $result) {
+  ?>
+
+  <div class="card">
+  <div class="card-header">
+    <?php echo $result['Username'] ?>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p><?php echo $result['Comment'] ?></p>
+      <span><?php echo $result['Rating'] ?></span>
+    </blockquote>
+  </div>
+</div>
+
+<?php
+  }
+?>
 
 </body>
 </html>

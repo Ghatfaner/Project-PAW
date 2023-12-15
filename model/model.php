@@ -218,7 +218,7 @@
     public function m_getRating($movieId) {
       return $this->database->query("SELECT Username, Comment, Rating
                                      from rate
-                                     join user on user.UserId = rating.UserId
+                                     join user on user.UserId = rate.UserId
                                      where MovieId = '$movieId'; ");
     }
 
