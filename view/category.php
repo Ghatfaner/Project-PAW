@@ -125,7 +125,7 @@
             <a class="nav-link active text-white" href="../view/category.php">Category</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white-50" href="../view/bookmark.php">Bookmark</a>
+            <a class="nav-link text-white-50" href="../view/realBookmark.php">Bookmark</a>
           </li>
           <li class="nav-item d-flex flex-row align-items-center px-2 py-1">
             <i href="../view/profile.php" class="fas fa-user-circle fa-2x text-white"></i>

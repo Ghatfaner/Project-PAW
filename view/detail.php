@@ -97,7 +97,7 @@ if (!isset($_SESSION['userId'])) {
             <a class="nav-link text-white-50" href="../view/category.php">Category</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white-50" href="../view/bookmark.php">Bookmark</a>
+            <a class="nav-link text-white-50" href="../view/realBookmark.php">Bookmark</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white-50" href="../view/profile.php">Profile</a>
@@ -144,7 +144,7 @@ if (!isset($_SESSION['userId'])) {
           ?>
           </a>
 
-          <a href="../view/realBookmark.php?movieId=<?= $result['MovieId'] ?>" class="btn px-3 py-2 fs-4 fw-semibold rounded-circle">
+          <a href="../view/detail.php?movieId=<?= $result['MovieId'] ?>" class="btn px-3 py-2 fs-4 fw-semibold rounded-circle">
           <!-- buat tombol bookmark jgn pake href, arahin ke logicnya buat tambah bookmark di file ini. baru lempar ke realBookmark.php -->
           <i class="fa-solid fa-bookmark fa-lg"></i>
           </a>
@@ -299,6 +299,14 @@ if (!isset($_SESSION['userId'])) {
 </div>
 
 <?php
+  }
+  if (isset($_GET['movieId'])) {
+    include_once '../controller/control.php';
+    $control = new Control();
+    $control->c_addBookmark($_SESSION['userId'], $movieId);
+
+    header('Location: ../view/realBookmark.php');
+    die();
   }
 ?>
 

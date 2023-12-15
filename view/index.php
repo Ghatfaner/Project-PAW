@@ -159,7 +159,7 @@ if (!isset($_SESSION['userId'])) {
             <a class="nav-link text-white-50" href="../view/category.php">Category</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white-50" href="../view/bookmark.php">Bookmark</a>
+            <a class="nav-link text-white-50" href="../view/realBookmark.php">Bookmark</a>
           </li>
           <li class="nav-item d-flex flex-row align-items-center px-2 py-1">
             <i href="../view/profile.php" class="fas fa-user-circle fa-2x text-white"></i>
@@ -538,9 +538,6 @@ if (!isset($_SESSION['userId'])) {
 
       </div>
   </div>
-
-  
-  <div class="px-5"><a href="../controller/logout.php" class="btn btn-warning w-100 mb-5 fs-3 fw-semibold">Logout</a></div>
 
   <div class="footer">
     <div class="container-fluid px-5 py-5 d-flex flex-column">
