@@ -33,7 +33,7 @@ if (!isset($_SESSION['userId'])) {
       color: gold;
     }
     .navbar {
-      background-color: #232D3F;
+      background-color: #005B41;
     }
     .navbar-brand img {
       width: 100%;
