@@ -61,54 +61,72 @@
       <div class="d-flex justify-content-end" id="navbarNav">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active text-white mx-2" aria-current="page" href="../view/index.php">Home</a>
+            <a class="nav-link text-white-50" aria-current="page" href="../view/index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white-50 mx-2" href="../view/search.php">Search</a>
+            <a class="nav-link text-white-50" href="../view/search.php">Search</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white-50 mx-2" href="../view/category.php">Category</a>
+            <a class="nav-link text-white-50" href="../view/category.php">Category</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white-50 mx-2" href="../view/bookmark.php">Bookmark</a>
+            <a class="nav-link text-white-50" href="../view/bookmark.php">Bookmark</a>
           </li>
-          <li class="nav-item me-lg-5 bg-light rounded px-1 d-flex">
-          <i class="bi bi-person-fill mt-2" style="color: #005B41;"></i>
-          <a class="nav-link active fw-bold mx-2" aria-current="page" style="color: #005B41;" href="profile.php">Profile</a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link text-white-50" href="../view/profile.php">Profile</a>
+          </li>
         </ul>
       </div>
+
     </div>
-</nav>
+  </nav>
 
-<div class="container mt-4 ">
-  <div class="row ">
-      <div class="absolute-container text-light">
-        <div class="button float-end">
-          <button type="button" class="btn btn-outline-light btn-sm mx-2" name="edit" id="edit">Edit profile</button>
-          <button type="button" class="btn btn-outline-light btn-sm mx-2" id="signout">Sign Out</button>
-        </div>
-        <div class="d-flex justify-content-center mx-5 mt-5">
-          <img src="../pictures/profpic.jpeg" alt="Profile Picture" class="profile-pic-small">
-        </div>
-        <div class="bio">
+  <?php
+    include_once "../controller/control.php";
+    $control = new Control();
+    $action = $control->c_getProfile($_SESSION['userId']);
 
-          <?php
-          require_once "../connDB.php";
-          require_once "../controller/control.php";
+    foreach ($action as $result) {
+  ?>
 
-          
-          ?>
-          <h3 class="text-center"><?php echo $_SESSION['username']; ?></h3>
-          <p class="text-center"><?php echo $_SESSION['address'];?>     |     <?php echo $_SESSION['occupation']; ?></p>
-        </div> 
-      </div>
+  <div class="button float-end">
+    <button type="button" class="btn btn-outline-light btn-sm mx-2" name="edit" id="edit">Edit profile</button>
+    <button type="button" class="btn btn-outline-light btn-sm mx-2" id="signout">Sign Out</button>
   </div>
-</div>
+
+  <div>
+    <img src="../pictures/profpic.jpeg" alt="Profile Picture" class="profile-pic-small">
+  </div>
+
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">User Name</label>
+    <input type="text" class="form-control" value="<?php echo $result['Username'] ?>" disabled>
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Occupation</label>
+    <input type="text" class="form-control" value="<?php echo $result['Occupation'] ?>" disabled>
+  </div>
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Email</label>
+    <input type="email" class="form-control" value="<?php echo $result['Email'] ?>" disabled>
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Phone Number</label>
+    <input type="tel" class="form-control" value="<?php echo $result['PhoneNumber'] ?>" disabled>
+  </div>
+  <div class="col-6">
+    <label for="inputAddress" class="form-label">Address</label>
+    <input type="text" class="form-control" value="<?php echo $result['Address'] ?>" disabled>
+  </div>
+
+  <?php
+    }
+  ?>
+
 <div class="rent">
   <div class="table">
     <div class="header text-light text-center mt-5 fw-bold fs-3">
-      <p>Rent History</p>
+      <h4>Rent History</h4>
       <hr />
     </div>
     <table class="table table-light w-75 p-3 mx-auto">
@@ -124,123 +142,44 @@
           <th scope="col">Status</th>
         </tr>
       </thead>
+
+      <?php
+        $action = $control->c_getRentHistory($_SESSION['userId']);
+
+        foreach($action as $result){
+      ?>
+
       <tbody>
-        <?php
-        require_once "../connDB.php";
-        require_once "../controller/control.php";
-        $control = new Control();
-
-        $sql = $control->c_getRentHistory();
-
-        $result = $sql->fetch_assoc();
-
-        foreach($result as $rslt){
-            ?>
-
-          <tr>
-          <th ><?php echo $rslt['rentId']?></th>
-          <td><?php echo $rslt['username'] ?></td>
-          <td><?php echo $rslt['title'] ?></td>
-          <td><?php echo $rslt['paymentmethod'] ?></td>
-          <td><?php echo $rslt['price'] ?></td>
-          <td><?php echo $rslt['rentdate'] ?></td>
-          <td><?php echo $rslt['returndate'] ?></td>
-          <td><?php echo $rslt['status'] ?></td>
+        <tr>
+          <th></th>
+          <td><?php echo $result['username'] ?></td>
+          <td><?php echo $result['title'] ?></td>
+          <td><?php echo $result['paymentmethod'] ?></td>
+          <td><?php echo $result['price'] ?></td>
+          <td><?php echo $result['rentdate'] ?></td>
+          <td><?php echo $result['returndate'] ?></td>
+          <td><?php echo $result['status'] ?></td>
         </tr>
+      </tbody>
          
          <?php
           }
         ?>
-
-
-
-        <!-- <tr>
-          <th >1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th >2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-          <td>@fat</td>
-          <td>@fat</td>
-          <td>@fat</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th >3</th>
-          <td >Larry the Bird</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-        </tr>
-        <tr>
-          <th >3</th>
-          <td >Larry the Bird</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-        </tr>
-        <tr>
-          <th >3</th>
-          <td >Larry the Bird</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-        </tr>
-        <tr>
-          <th >3</th>
-          <td >Larry the Bird</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-        </tr>
-        <tr>
-          <th >3</th>
-          <td >Larry the Bird</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-        </tr>
-        <tr>
-          <th >3</th>
-          <td >Larry the Bird</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-        </tr> -->
-      </tbody>
     </table>
   </div>
-
 </div>
 
-<!-- <div class="footer"  style="background-color: #005B41;">
+<script type="text/javascript">
+    document.getElementById("edit").onclick = function () {
+        location.href = "editProfile.php";
+    };
+
+    document.getElementById("signout").onclick = function(){
+      location.href = "login.php";
+    }
+</script>
+
+<div class="footer">
     <div class="container-fluid px-5 py-5 d-flex flex-column">
       <div class="pb-5">
         <img src="../pictures/Logo-Light-Small.png" alt="">
@@ -261,34 +200,21 @@
         <div class="col-3">
           <h5 class="mb-3">Social Media</h5>
           <p>Connect with us on social media for the latest updates and engaging content.</p>
-          <div class="text-light d-flex flex-row justify-content-start gap-2">
+          <div class="text-dark d-flex flex-row justify-content-start gap-2">
             <div>
-              <i class="fab fa-facebook-square fa-2x"></i>
+              <i class="fab fa-facebook-square fa-3x"></i>
             </div>
             <div>
-              <i class="fab fa-whatsapp-square fa-2x"></i>
+              <i class="fab fa-whatsapp-square fa-3x"></i>
             </div>
             <div>
-              <i class="fab fa-twitter-square fa-2x"></i>
+              <i class="fab fa-twitter-square fa-3x"></i>
             </div>
           </div>
         </div>
       </div>
     </div>
-</div> -->
-
-
-<script type="text/javascript">
-    document.getElementById("edit").onclick = function () {
-        location.href = "editProfile.php";
-    };
-
-    document.getElementById("signout").onclick = function(){
-      location.href = "login.php";
-    }
-</script>
-
-
-
+  </div>
+  
 </body>
 </html>
