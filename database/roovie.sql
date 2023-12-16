@@ -1,5 +1,3 @@
-drop schema PAW;
-
 create schema PAW;
 
 USE PAW;
@@ -72,7 +70,6 @@ create table if not exists Casting(
     foreign key (ActorId) references Actor (ActorId),
     foreign key (MovieId) references Movie (MovieId)
 );
-drop table rent;
 
 create table if not exists Rent (
     RentId int auto_increment primary key not null ,
@@ -88,7 +85,6 @@ create table if not exists Rent (
     foreign key (UserId) references User(UserId),
     foreign key (MovieId) references Movie(MovieId)
 );
-
 
 
 create table if not exists Bookmark (
