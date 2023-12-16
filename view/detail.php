@@ -254,19 +254,24 @@ if (!isset($_SESSION['userId'])) {
     }
   ?>
 
-  <div>
-    <h5>Comment and Rating</h5>
+  <div class="px-5 pb-5">
     <form action="" method="POST">
-      <div>
-        <label for="">Comment</label>
-        <input type="text" name="Comment" required>
+      <div class="d-flex flex-row gap-2 mb-3">
+        <i class="fas fa-comment fa-2x"></i>
+        <h5 class="fs-3 fw-semibold">Comment and Rating</h5>
       </div>
-      <div>
-        <label for="">Rating</label>
-        <input type="number" name="Rating" required>
+      <div class="input-text mb-4" style="width: 640px;">
+        <div class="mb-2">
+          <label class="fs-4">Comment</label>
+          <input type="text" class="form-control w-50" name="Comment" required>
+        </div>
+        <div>
+          <label class="fs-4">Rating</label>
+          <input type="number" class="form-control w-50" name="Rating" required>
+        </div>
       </div>
-      <div>
-        <input type="submit" name="submit" class="" value="rate">
+      <div class="">
+        <input type="submit" name="submit" class="btn btn-success" value="Rate">
       </div>
     </form>
   </div>
@@ -290,17 +295,19 @@ if (!isset($_SESSION['userId'])) {
     foreach ($action as $result) {
   ?>
 
-  <div class="card">
-  <div class="card-header">
-    <?php echo $result['Username'] ?>
+  <div class="px-5 pb-5 gap-1">
+    <div class="card text-white" style="background-color: #232D3F">
+      <div class="card-header">
+        <?php echo $result['Username'] ?>
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p><?php echo $result['Comment'] ?></p>
+          <span>Rate: <?php echo $result['Rating'] ?>/5</span>
+        </blockquote>
+      </div>
+    </div>
   </div>
-  <div class="card-body">
-    <blockquote class="blockquote mb-0">
-      <p><?php echo $result['Comment'] ?></p>
-      <span><?php echo $result['Rating'] ?></span>
-    </blockquote>
-  </div>
-</div>
 
 <?php
   }
