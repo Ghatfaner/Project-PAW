@@ -34,7 +34,8 @@ if (!isset($_SESSION['userId'])) {
   <link rel="stylesheet" href="../css/styles.css">
 
   <link rel="icon" href="../pictures/Logo-Light-Small.png" type="image/x-icon">
-  <title>Document</title>
+  <title>Bookmark</title>
+
   <style>
     body {
       overflow-x: hidden;
@@ -100,7 +101,6 @@ if (!isset($_SESSION['userId'])) {
 
 <div class="container-fluid d-flex flex-column px-5 py-5">
   <div class="movie-search d-flex flex-row align-items-center gap-3 px-3 py-3 mb-3">
-    <img src="../pictures/movie-tall/<?php echo $movieId ?>.jpg" alt="" class="movie-search-img rounded">
     <div class="movie-search-text">
       <h3 class="fs-3 fw-semibold mb-4">How Film-maker Make: </br><?php echo $result['Title'] ?></h3>
           
