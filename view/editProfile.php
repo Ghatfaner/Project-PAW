@@ -93,7 +93,7 @@
   </div>
     <input type="submit" name="save" value="Save Changes" class="btn btn-success mx-5 mt-5">
     <!-- <button type="submit" class="btn btn-success mx-5 mt-5" name="save">Save Changes</button><br> -->
-    <button type="button" class="btn btn-outline-light mx-5 mb-5" name="cancel">Cancel</button>
+    <input type="submit" name="cancel" value="Cancel" class="btn btn-outline-light mx-5 mb-5">
 </form>
 
 <?php
