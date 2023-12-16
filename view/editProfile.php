@@ -51,7 +51,7 @@
 <?php
   include_once "../controller/control.php";
   $control = new control();
- 
+
   if(isset($_POST['cancel'])){
     header('Location: profile.php');
   }
@@ -65,6 +65,12 @@
     $occupation = $_POST['Occupation'];
 
     $action = $control->c_updateProfile($userId, $username, $email, $address, $phoneNumber, $occupation);
+
+    if($action == NULL){
+      header('Location: profile.php');
+    } else {
+      echo "Failed to update profile";
+    }
   }
 
   $action = $control->c_getProfile($_SESSION['userId']);
@@ -72,33 +78,41 @@
 
 ?>
 
-<form class="row g-2 text-light" method="POST" action="editProfile.php">
-  <div class="col-lg-12">
-    <div class="col-12 mx-5 mt-3">
-      <label class="form-label">User Name</label><br>
-      <input type="text" class="form-control" name="Username" placeholder="<?php echo $result['Username'] ?>">
+<div class="d-flex flex-column justify-content-center">
+  <div class="container py-5">
+    <div class="text-light d-flex flex-row justify-content-center">
+      <h2>Edit Profile</h2>
     </div>
-    <div class="col-12 mx-5 mt-3">
-      <label class="form-label">Email</label><br>
-      <input type="email" class="form-control" name="Email" placeholder="<?php echo $result['Email'] ?>">
-    </div>
-    <div class="col-12 mx-5 mt-3">
-      <label class="form-label">Address</label><br>
-      <input type="text" class="form-control" name="Address" placeholder="<?php echo $result['Address'] ?>">
-    </div>
-    <div class="col-12 mx-5 mt-3">
-      <label class="form-label">Phone Number</label><br>
-      <input type="text" class="form-control" name="PhoneNumber" placeholder="<?php echo $result['PhoneNumber'] ?>">
-    </div>
-    <div class="col-12 mx-5 mt-3">
-      <label class="form-label">Occupation</label><br>
-      <input type="text" class="form-control" name="Occupation" placeholder="<?php echo $result['Occupation'] ?>">
+    <form class="row g-2 text-light" method="POST" action="editProfile.php">
+      <div class="">
+        <div class=" mx-5 mt-3">
+          <label class="form-label">Username</label><br>
+          <input type="text" class="form-control" name="Username" placeholder="<?php echo $result['Username'] ?>">
+        </div>
+        <div class=" mx-5 mt-3">
+          <label class="form-label">Email</label><br>
+          <input type="email" class="form-control" name="Email" placeholder="<?php echo $result['Email'] ?>">
+        </div>
+        <div class=" mx-5 mt-3">
+          <label class="form-label">Address</label><br>
+          <input type="text" class="form-control" name="Address" placeholder="<?php echo $result['Address'] ?>">
+        </div>
+        <div class=" mx-5 mt-3">
+          <label class="form-label">Phone Number</label><br>
+          <input type="text" class="form-control" name="PhoneNumber" placeholder="<?php echo $result['PhoneNumber'] ?>">
+        </div>
+        <div class=" mx-5 mt-3">
+          <label class="form-label">Occupation</label><br>
+          <input type="text" class="form-control" name="Occupation" placeholder="<?php echo $result['Occupation'] ?>">
+        </div>
+      </div>
+    </form>
+    <div class="d-flex flex-column justify-content-center px-5 mt-5 gap-3">
+      <input type="submit" name="save" value="Save Changes" class="btn btn-success">
+      <input type="submit" name="cancel" value="Exit" class="btn btn-outline-light">
     </div>
   </div>
-    <input type="submit" name="save" value="Save Changes" class="btn btn-success mx-5 mt-5">
-    <!-- <button type="submit" class="btn btn-success mx-5 mt-5" name="save">Save Changes</button><br> -->
-    <input type="submit" name="cancel" value="Cancel" class="btn btn-outline-light mx-5 mb-5">
-</form>
+</div>
 
 <?php
   }
