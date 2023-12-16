@@ -83,11 +83,11 @@ if (!isset($_SESSION['userId'])) {
             <a class="nav-link text-white-50" href="../view/category.php">Category</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white-50" href="../view/bookmark.php">Bookmark</a>
+            <a class="nav-link text-white-50" href="../view/realBookmark.php">Bookmark</a>
           </li>
-          <li class="nav-item d-flex flex-row align-items-center bg-white rounded px-2 py-1">
-            <i class="fas fa-user-circle fa-2x text-success"></i>
-            <a class="nav-link active text-success" href="../view/profile.php">Profile</a>
+          <li class="nav-item d-flex flex-row align-items-center px-2 py-1">
+            <i href="../view/profile.php" class="fas fa-user-circle fa-2x text-white"></i>
+            <a class="nav-link active text-white" href="../view/profile.php">Profile</a>
           </li>
         </ul>
       </div>
@@ -95,7 +95,7 @@ if (!isset($_SESSION['userId'])) {
     </div>
   </nav>
 
-  <div class="container py-5 d-flex flex-column">
+  <div class="px-5 py-5 d-flex flex-column">
     <?php
       include_once "../controller/control.php";
       $control = new Control();
@@ -103,20 +103,22 @@ if (!isset($_SESSION['userId'])) {
       foreach ($action as $result) {
     ?>
 
-    <div class="d-flex flex-row justify-content-end">
-      <button type="button" class="btn btn-outline-light btn-sm mx-2" name="edit" id="edit">Edit profile</button>
-      <button type="button" class="btn btn-outline-light btn-sm mx-2" id="signout">Sign Out</button>
-    </div>
 
-    <div class="mb-5">
-      <div class="d-flex flex-row align-items-center text-light text-start mt-5 fw-semibold fs-3 gap-2 mb-2">
+    <div class="mb-5 px-5">
+      
+      <div class="d-flex flex-row justify-content-end">
+        <button type="button" class="btn btn-outline-light btn-sm mx-2 fs-5 px-4 py-2 rounded" name="edit" id="edit">Edit profile</button>
+        <button type="button" class="btn btn-danger btn-sm mx-2 fs-5 px-4 rounded" id="signout">Logout</button>
+      </div>
+
+      <div class="d-flex flex-row align-items-center text-light text-start mt-5 fw-semibold fs-3 gap-2 mb-3">
         <i class="fas fa-circle-user fa-lg"></i>
         <div class="fs-2">Profile</div>
       </div>
 
       <div class="d-flex flex-row justify-content-start align-items-center gap-4 mb-5">
         
-        <img src="../pictures/profpic.jpeg" alt="Profile Picture" class="profile rounded" style="height: 14rem;">
+        <img src="../pictures/pp-1.jpg" alt="Profile Picture" class="profile rounded shadow" style="height: 16rem;">
 
         <div class="d-flex flex-column gap-2">
           <div class="duration d-flex flex-row">
@@ -157,7 +159,7 @@ if (!isset($_SESSION['userId'])) {
       }
     ?>
 
-  <div class="rent">
+  <div class="rent px-5">
     <div class="d-flex flex-row align-items-center text-light text-start fs-3 gap-2 mb-3">
       <i class="fas fa-table fa-lg"></i>
       <div class="fs-2 fw-semibold">Rent Histories</div>
@@ -172,7 +174,7 @@ if (!isset($_SESSION['userId'])) {
             <th scope="col">Payment Method</th>
             <th scope="col">Price</th>
             <th scope="col">Rent Date</th>
-            <th scope="col">Return date</th>
+            <th scope="col">Return Date</th>
             <th scope="col">Status</th>
           </tr>
         </thead>

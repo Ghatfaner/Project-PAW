@@ -80,8 +80,9 @@ if(!isset($_SESSION['userId'])) {
             <li class="nav-item">
               <a class="nav-link text-white-50" href="../view/bookmark.php">Bookmark</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-white-50" href="../view/profile.php">Profile</a>
+            <li class="nav-item d-flex flex-row align-items-center px-2 py-1">
+              <i href="../view/profile.php" class="fas fa-user-circle fa-2x text-white"></i>
+              <a class="nav-link text-white" href="../view/profile.php">Profile</a>
             </li>
           </ul>
         </div>
@@ -257,10 +258,10 @@ if(!isset($_SESSION['userId'])) {
 
             if ($action == NULL) {
               echo "<script>alert('Rent Success!')</script>";
-              echo "<script>window.location.href = 'index.php'</script>";
+              echo "<script>window.location.href = '../view/profile.php'</script>";
             } else {
               echo "<script>alert('Rent Failed!')</script>";
-              echo "<script>window.location.href = 'index.php'</script>";
+              echo "<script>window.location.href = '../view/index.php'</script>";
             }
           }
         ?>

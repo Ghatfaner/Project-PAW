@@ -97,10 +97,11 @@ if (!isset($_SESSION['userId'])) {
             <a class="nav-link text-white-50" href="../view/category.php">Category</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white-50" href="../view/bookmark.php">Bookmark</a>
+            <a class="nav-link text-white-50" href="../view/realBookmark.php">Bookmark</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-white-50" href="../view/profile.php">Profile</a>
+          <li class="nav-item d-flex flex-row align-items-center px-2 py-1">
+            <i href="../view/profile.php" class="fas fa-user-circle fa-2x text-white"></i>
+            <a class="nav-link text-white" href="../view/profile.php">Profile</a>
           </li>
         </ul>
       </div>
@@ -144,9 +145,13 @@ if (!isset($_SESSION['userId'])) {
           ?>
           </a>
 
-          <a href="../view/bookmark.php?movieId=<?= $result['MovieId'] ?>" class="btn px-3 py-2 fs-4 fw-semibold rounded-circle">
-          <i class="fa-solid fa-bookmark fa-lg"></i>
-          </a>
+          <form action="detail.php" method="POST">
+            <input type="hidden" name="movieId" value="<?= $result['MovieId']; ?>">
+            <input type="hidden" name="userId" value="<?= $_SESSION['userId']; ?>">
+            <button class="btn px-3 py-2 fs-4 fw-semibold rounded-circle" name="submit-bookmark" style="background-color:#2B7761">
+            <i class="fa-solid fa-bookmark fa-lg"></i>
+            </button>
+          </form>
         </div>
 
       </div>
@@ -248,6 +253,81 @@ if (!isset($_SESSION['userId'])) {
   <?php
     }
   ?>
+
+  <div class="px-5 pb-5">
+    <form action="" method="POST">
+      <div class="d-flex flex-row gap-2 mb-3">
+        <i class="fas fa-comment fa-2x"></i>
+        <h5 class="fs-3 fw-semibold">Comment and Rating</h5>
+      </div>
+      <div class="input-text mb-4" style="width: 640px;">
+        <div class="mb-2">
+          <label class="fs-4">Comment</label>
+          <input type="text" class="form-control w-50" name="Comment" required>
+        </div>
+        <div>
+          <label class="fs-4">Rating</label>
+          <input type="number" class="form-control w-50" name="Rating" required>
+        </div>
+      </div>
+      <div class="">
+        <input type="submit" name="submit" class="btn btn-success" value="Rate">
+      </div>
+    </form>
+  </div>
+
+  <?php
+    if (isset($_POST['submit'])) {
+      $movieId = $_GET['movieId'];
+      $userId = $_SESSION['userId'];
+      $comment = $_POST['Comment'];
+      $rating = $_POST['Rating'];
+      if ($rating > 5) {
+        $rating = 5;
+      } else if ($rating < 0) {
+        $rating = 0;
+      }
+      $control->c_addRating($userId, $movieId, $comment, $rating);
+    }
+
+    $action = $control->c_getRating($movieId);
+
+    foreach ($action as $result) {
+  ?>
+
+  <div class="px-5 pb-5 gap-1">
+    <div class="card text-white" style="background-color: #232D3F">
+      <div class="card-header">
+        <?php echo $result['Username'] ?>
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p><?php echo $result['Comment'] ?></p>
+          <span>Rate: <?php echo $result['Rating'] ?>/5</span>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
+<?php
+  }
+  if (isset($_POST['submit-bookmark'])) {
+    $movieId = $_POST['movieId'];
+    $userId = $_SESSION['userId'];
+
+    include_once '../controller/control.php';
+    $control = new Control();
+    $control->c_addBookmark($userId, $movieId);
+
+    if ($control != NULL) {
+      echo "<script>alert('Bookmark added!')</script>";
+      echo "<script>window.location.href = 'realBookmark.php'</script>";
+    } else {
+      echo "<script>alert('Bookmark failed to add!')</script>";
+      echo "<script>window.location.href = 'detail.php?movieId=$movieId'</script>";
+    }
+  }
+?>
 
 </body>
 </html>
