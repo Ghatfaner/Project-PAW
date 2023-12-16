@@ -226,8 +226,6 @@ if (!isset($_SESSION['userId'])) {
     <?php
       foreach ($result as $action) {
     ?>
-
-    <!-- udh bisa ku ambil datanya faan. tinggal styling lagi card nyaa -->
       
       <div class="col-3">
         <div class="card border border-0">

@@ -192,57 +192,57 @@ if(!isset($_SESSION['userId'])) {
         </div>
 
         </div>
-        <!-- Form -->
-        <div class="py-5">
-          <form class="d-flex flex-column gap-2" action="rent.php" method="POST">
-            <div class="row">
-              <div class="col">
-                <div class="fs-5 mb-1 fw-medium">Username</div>
-                <input type="text" name="username" class="form-control rounded" placeholder="Username" required>
-              </div>
-              <div class="col">
-                <div class="fs-5 mb-1 fw-medium">Phone Number</div>
-                <input type="tel" name="phone" class="form-control rounded" placeholder="Phone number" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}" required>
-                <div class="form-text text-light opacity-50">
-                  Format: xxxx-xxxx-xxxx
-                </div>
-              </div>
-            </div>
-            <div class="mb-2">
-              <div class="fs-5 mb-1 fw-medium">Address</div>
-              <textarea name="address" class="form-control rounded" placeholder="Address" rows="2" cols="30" required></textarea>
-            </div>
-        
+<!-- Form -->
+<div class="py-5">
+<form class="d-flex flex-column gap-2" action="rent.php" method="POST">
+  <div class="row">
+    <div class="col">
+      <div class="fs-5 mb-1 fw-medium">Username</div>
+      <input type="text" name="username" class="form-control rounded" placeholder="Username" required>
+    </div>
+    <div class="col">
+      <div class="fs-5 mb-1 fw-medium">Phone Number</div>
+      <input type="tel" name="phone" class="form-control rounded" placeholder="Phone number" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}" required>
+      <div class="form-text text-light opacity-50">
+        Format: xxxx-xxxx-xxxx
+      </div>
+    </div>
+  </div>
+  <div class="mb-2">
+    <div class="fs-5 mb-1 fw-medium">Address</div>
+    <textarea name="address" class="form-control rounded" placeholder="Address" rows="2" cols="30" required></textarea>
+  </div>
 
-            <div class="col">
-            <div class="mb-1 fs-5 fw-medium">Payment Method</div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="payment" value="Cash">
-                <label class="form-check-label">
-                  Cash
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="payment" value="Debit">
-                <label class="form-check-label">
-                  Debit/QRIS
-                </label>
-              </div>
-              <p class="mt-3 fs-5 opacity-50">
-                *Please double check your rent form. If the movie you’re booking is not what you mean, there are not the responsibilty of the Roovie, Inc.
-              </p>
-            </div>
 
-            <div class="d-flex flex-row justify-content-between mt-3">
-              <!-- button -->
-              <a href="detail.php?movieId=<?= $result['MovieId']; ?>" class="btn btn-outline-success px-4 fs-4">Cancel</a>
+  <div class="col">
+  <div class="mb-1 fs-5 fw-medium">Payment Method</div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="payment" value="Cash">
+      <label class="form-check-label">
+        Cash
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="payment" value="Debit">
+      <label class="form-check-label">
+        Debit/QRIS
+      </label>
+    </div>
+  </div>
+    <p class="mt-3 fs-5 opacity-50">
+      *Please double check your rent form. If the movie you’re booking is not what you mean, there are not the responsibilty of the Roovie, Inc.
+    </p>
+  </div>
 
-              <input type="hidden" name="movieId" value="<?= $result['MovieId']; ?>">
-              <input type="hidden" name="userId" value="<?= $_SESSION['userId']; ?>">
-              <button type="submit" name="submit" class="btn btn-success px-4 fs-4">Submit</button>
-            </div>
-          </form>
-        </div>
+  <div class="d-flex flex-row justify-content-between mt-3">
+    <!-- button -->
+    <a href="detail.php?movieId=<?= $result['MovieId']; ?>" class="btn btn-outline-success px-4 fs-4">Cancel</a>
+    <input type="hidden" name="movieId" value="<?= $result['MovieId']; ?>">
+    <input type="hidden" name="userId" value="<?= $_SESSION['userId']; ?>">
+    <button type="submit" name="submit" class="btn btn-success px-4 fs-4">Submit</button>
+  </div>
+</form>
+</div>
 
         <?php
           }
