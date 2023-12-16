@@ -24,7 +24,7 @@ if (isset($_SESSION['userId'])) {
   <link rel="stylesheet" href="../css/styles.css">
 
   <link rel="icon" href="../pictures/Logo-Light-Small.png" type="image/x-icon">
-  <title>Registration</title>
+  <title>Signup</title>
   
   <style>
     .container {
