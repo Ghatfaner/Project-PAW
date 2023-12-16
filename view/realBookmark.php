@@ -57,6 +57,10 @@ if (!isset($_SESSION['userId'])) {
     .nav-item {
       margin-right: 12px;
     }
+    .movie-search {
+      background-color: #232D3F;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
@@ -90,7 +94,8 @@ if (!isset($_SESSION['userId'])) {
 
     </div>
   </nav>
-
+  
+  <div class="mt-5">
   <?php
     include_once '../controller/control.php';
     $control = new Control();
@@ -99,33 +104,34 @@ if (!isset($_SESSION['userId'])) {
     foreach ($action as $result) {
   ?>
 
-<div class="container-fluid d-flex flex-column px-5 py-5">
-  <div class="movie-search d-flex flex-row align-items-center gap-3 px-3 py-3 mb-3">
-    <div class="movie-search-text">
-      <h3 class="fs-3 fw-semibold mb-4">How Film-maker Make: </br><?php echo $result['Title'] ?></h3>
-          
-      <div class="d-flex flex-column gap-1 mb-3">
-        <div class="d-flex flex-row align-items-center gap-2">
-          <h6 class="fs-5 fw-medium">Duration:</h6>
-          <h6 class="fs-5 fw-normal"> <?php echo $result['Duration'] ?></h6>
+  <div class="container-fluid d-flex flex-column px-5">
+    <div class="movie-search d-flex flex-row align-items-center gap-3 px-3 py-3 mb-3">
+      <div class="movie-search-text">
+        <h3 class="fs-3 fw-semibold mb-4">How Film-maker Make: </br><?php echo $result['Title'] ?></h3>
+  
+        <div class="d-flex flex-column gap-1 mb-3">
+          <div class="d-flex flex-row align-items-center gap-2">
+            <h6 class="fs-5 fw-medium">Duration:</h6>
+            <h6 class="fs-5 fw-normal"> <?php echo $result['Duration'] ?></h6>
+          </div>
+          <div class="d-flex flex-row align-items-center gap-2">
+            <h6 class="fs-5 fw-medium">Release Date: </h6>
+            <h6 class="fs-5 fw-normal"><?php echo $result['ReleaseDate'] ?></h6>
+          </div>
+          <div class="d-flex flex-row align-items-center gap-2">
+            <h6 class="fs-5 fw-medium">Genre: </h6>
+            <h6 class="fs-5 fw-normal"><?php echo $result['GenreName'] ?></h6>
+          </div>
         </div>
-        <div class="d-flex flex-row align-items-center gap-2">
-          <h6 class="fs-5 fw-medium">Release Date: </h6>
-          <h6 class="fs-5 fw-normal"><?php echo $result['ReleaseDate'] ?></h6>
-        </div>
-        <div class="d-flex flex-row align-items-center gap-2">
-          <h6 class="fs-5 fw-medium">Genre: </h6>
-          <h6 class="fs-5 fw-normal"><?php echo $result['GenreName'] ?></h6>
-        </div>
+        </a>
       </div>
-      </a>
     </div>
   </div>
-</div>
-      
+  
   <?php
     }
-
-  ?>
+    
+    ?>
+  </div>
 </body>
 </html>

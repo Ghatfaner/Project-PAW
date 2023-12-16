@@ -116,9 +116,9 @@ if (!isset($_SESSION['userId'])) {
         <div class="fs-2">Profile</div>
       </div>
 
-      <div class="d-flex flex-row justify-content-start align-items-center gap-4 mb-5">
+      <div class="d-flex flex-row justify-content-start align-items-center gap-5 mb-5">
         
-        <img src="../pictures/pp-1.jpg" alt="Profile Picture" class="profile rounded shadow" style="height: 16rem;">
+        <img src="../pictures/pp-3.jpeg" alt="Profile Picture" class="profile rounded shadow" style="height: 16rem;">
 
         <div class="d-flex flex-column gap-2">
           <div class="duration d-flex flex-row">

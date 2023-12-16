@@ -106,11 +106,11 @@
           <input type="text" class="form-control" name="Occupation" placeholder="<?php echo $result['Occupation'] ?>">
         </div>
       </div>
+      <div class="d-flex flex-column justify-content-center px-5 mt-5 gap-3">
+        <input type="submit" name="save" value="Save Changes" class="btn btn-success">
+        <input type="submit" name="cancel" value="Exit" onclick="goBack()" class="btn btn-outline-light">
+      </div>
     </form>
-    <div class="d-flex flex-column justify-content-center px-5 mt-5 gap-3">
-      <input type="submit" name="save" value="Save Changes" class="btn btn-success">
-      <input type="submit" name="cancel" value="Exit" class="btn btn-outline-light">
-    </div>
   </div>
 </div>
 
@@ -119,4 +119,9 @@
 ?>
 
 </body>
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
 </html>
