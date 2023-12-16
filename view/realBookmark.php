@@ -118,9 +118,7 @@ if (!isset($_SESSION['userId'])) {
           <h6 class="fs-5 fw-normal"><?php echo $result['GenreName'] ?></h6>
         </div>
       </div>
-
-      <a href="detail.php?movieId=<?= $movieId ?>" class="btn">More Detail</a>
-      
+      </a>
     </div>
   </div>
 </div>

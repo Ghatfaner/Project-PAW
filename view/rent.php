@@ -80,8 +80,9 @@ if(!isset($_SESSION['userId'])) {
             <li class="nav-item">
               <a class="nav-link text-white-50" href="../view/bookmark.php">Bookmark</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-white-50" href="../view/profile.php">Profile</a>
+            <li class="nav-item d-flex flex-row align-items-center px-2 py-1">
+              <i href="../view/profile.php" class="fas fa-user-circle fa-2x text-white"></i>
+              <a class="nav-link text-white" href="../view/profile.php">Profile</a>
             </li>
           </ul>
         </div>

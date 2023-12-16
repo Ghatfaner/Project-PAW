@@ -99,8 +99,9 @@ if (!isset($_SESSION['userId'])) {
           <li class="nav-item">
             <a class="nav-link text-white-50" href="../view/realBookmark.php">Bookmark</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-white-50" href="../view/profile.php">Profile</a>
+          <li class="nav-item d-flex flex-row align-items-center px-2 py-1">
+            <i href="../view/profile.php" class="fas fa-user-circle fa-2x text-white"></i>
+            <a class="nav-link text-white" href="../view/profile.php">Profile</a>
           </li>
         </ul>
       </div>
@@ -144,10 +145,13 @@ if (!isset($_SESSION['userId'])) {
           ?>
           </a>
 
-          <a href="../view/detail.php?movieId=<?= $result['MovieId'] ?>" class="btn px-3 py-2 fs-4 fw-semibold rounded-circle">
-          <!-- buat tombol bookmark jgn pake href, arahin ke logicnya buat tambah bookmark di file ini. baru lempar ke realBookmark.php -->
-          <i class="fa-solid fa-bookmark fa-lg"></i>
-          </a>
+          <form action="detail.php" method="POST">
+            <input type="hidden" name="movieId" value="<?= $result['MovieId']; ?>">
+            <input type="hidden" name="userId" value="<?= $_SESSION['userId']; ?>">
+            <button class="btn px-3 py-2 fs-4 fw-semibold rounded-circle" name="submit-bookmark" style="background-color:#2B7761">
+            <i class="fa-solid fa-bookmark fa-lg"></i>
+            </button>
+          </form>
         </div>
 
       </div>
@@ -300,13 +304,21 @@ if (!isset($_SESSION['userId'])) {
 
 <?php
   }
-  if (isset($_GET['movieId'])) {
+  if (isset($_POST['submit-bookmark'])) {
+    $movieId = $_POST['movieId'];
+    $userId = $_SESSION['userId'];
+
     include_once '../controller/control.php';
     $control = new Control();
-    $control->c_addBookmark($_SESSION['userId'], $movieId);
+    $control->c_addBookmark($userId, $movieId);
 
-    header('Location: ../view/realBookmark.php');
-    die();
+    if ($control != NULL) {
+      echo "<script>alert('Bookmark added!')</script>";
+      echo "<script>window.location.href = 'realBookmark.php'</script>";
+    } else {
+      echo "<script>alert('Bookmark failed to add!')</script>";
+      echo "<script>window.location.href = 'detail.php?movieId=$movieId'</script>";
+    }
   }
 ?>
 
