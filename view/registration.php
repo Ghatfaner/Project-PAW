@@ -67,10 +67,7 @@ if (isset($_SESSION['userId'])) {
             $username = isset($_POST['username']) ? $_POST['username'] : '';
             $email = isset($_POST['email']) ? $_POST['email'] : '';
             $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
-
-            // Check if the "occupation" key exists before accessing it
             $occupation = isset($_POST['occupation']) ? $_POST['occupation'] : '';
-
             $address = isset($_POST['address']) ? $_POST['address'] : '';
             $password = isset($_POST['password']) ? $_POST['password'] : '';
             $passwordConfirm = isset($_POST['passwordConfirm']) ? $_POST['passwordConfirm'] : '';
@@ -83,15 +80,14 @@ if (isset($_SESSION['userId'])) {
             if ($password !== $passwordConfirm) {
                 array_push($errors, "The passwords do not match");
             }
-
             if (count($errors) > 0) {
                 foreach ($errors as $error) {
                     echo "<div class='alert alert-danger' role='alert'>$error</div>";
                 }
             } else {
-                require_once "../connDB.php"; // Check the path here
-                require_once "../controller/control.php"; // Check the path here
-                $sql = new control(); // Make sure control class is defined
+                require_once "../connDB.php"; 
+                require_once "../controller/control.php"; 
+                $sql = new control(); 
                 $result = $sql->c_signUp($username, $email, $password, $address,
                     $phone, $occupation);
                 if ($result == 'success') {
