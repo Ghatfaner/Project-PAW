@@ -137,11 +137,11 @@ if (!isset($_SESSION['userId'])) {
         <div class="d-flex flex-row gap-3">
           <a href="../view/rent.php?movieId=<?= $result['MovieId'] ?>" class="btn px-3 py-2 fs-4 fw-semibold <?php echo ($result['Stock'] == 0) ? 'disabled bg-success' : '' ?>">
           <?php
-          if ($result['Stock'] > 0) {
-          echo "Rent for $" . $result['price'];
-          } else {
-          echo "Out of Stock";
-          }
+            if ($result['Stock'] > 0) {
+            echo "Rent for $" . $result['price'];
+            } else {
+            echo "Out of Stock";
+            }
           ?>
           </a>
 
@@ -149,7 +149,7 @@ if (!isset($_SESSION['userId'])) {
             <input type="hidden" name="movieId" value="<?= $result['MovieId']; ?>">
             <input type="hidden" name="userId" value="<?= $_SESSION['userId']; ?>">
             <button class="btn px-3 py-2 fs-4 fw-semibold rounded-circle" name="submit-bookmark" style="background-color:#2B7761">
-            <i class="fa-solid fa-bookmark fa-lg"></i>
+              <i class="fa-solid fa-bookmark fa-lg"></i>
             </button>
           </form>
         </div>

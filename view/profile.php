@@ -58,9 +58,6 @@ if (!isset($_SESSION['userId'])) {
           padding: 0 0;
           margin: 0 0;
         }
-
-
-
     </style>
 </head>
 <body>

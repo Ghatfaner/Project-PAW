@@ -1,20 +1,9 @@
 <?php
-session_start();
-if (!isset($_SESSION['userId'])) {
+  session_start();
+  if (!isset($_SESSION['userId'])) {
     header('Location: ../view/login.php');
     die();
-}
-
-  // $movieId = intval($_GET['movieId']);
-
-  // if (isset($_GET['movieId'])) {
-  //   include_once '../controller/control.php';
-  //   $control = new Control();
-  //   $control->c_addBookmark($_SESSION['userId'], $movieId);
-  // }
-
-  // logic bookmark harusnya ga disini, klo disini, tiap nge refresh page bakal nambah bookmark
-
+  }
 ?>
 
 <!DOCTYPE html>
@@ -130,8 +119,7 @@ if (!isset($_SESSION['userId'])) {
   
   <?php
     }
-    
-    ?>
+  ?>
   </div>
 </body>
 </html>

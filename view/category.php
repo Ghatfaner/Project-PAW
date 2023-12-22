@@ -154,64 +154,61 @@
       </select>
     </form>
 
-<?php
-  include_once '../controller/control.php';
-  $control = new Control();
+    <?php
+      include_once '../controller/control.php';
+      $control = new Control();
 
-  $sortOption = $_GET['sort'] ?? 'latest';
+      $sortOption = $_GET['sort'] ?? 'latest';
 
-  switch ($sortOption) {
-    case 'ascending':
-      $action = $control->c_sortAscending();
-      break;
-    case 'descending':
-      $action = $control->c_sortDescending();
-      break;
-    case 'latest':
-      $action = $control->c_sortNewest();
-      break;
-    case 'oldest':
-      $action = $control->c_sortOldest();
-      break;
-    case 'lowerPrice':
-      $action = $control->c_sortLowerPrice();
-      break;
-    case 'higherPrice':
-      $action = $control->c_sortHigherPrice();
-      break;
-    case 'age':
-      $action = $control->c_sortAgeRating();
-      break;
-    default:
-      $action = $control->c_sortNewest();
-      break;
-  }
-?>
-
-
-    <!-- jgn lupa cardnya ditambahin buat price, di figma blm ad soalnyaa -->
+      switch ($sortOption) {
+        case 'ascending':
+          $action = $control->c_sortAscending();
+          break;
+        case 'descending':
+          $action = $control->c_sortDescending();
+          break;
+        case 'latest':
+          $action = $control->c_sortNewest();
+          break;
+        case 'oldest':
+          $action = $control->c_sortOldest();
+          break;
+        case 'lowerPrice':
+          $action = $control->c_sortLowerPrice();
+          break;
+        case 'higherPrice':
+          $action = $control->c_sortHigherPrice();
+          break;
+        case 'age':
+          $action = $control->c_sortAgeRating();
+          break;
+        default:
+          $action = $control->c_sortNewest();
+          break;
+      }
+    ?>
     
     <?php
       foreach ($action as $sort) {
     ?>
     
     <div class="col-3 my-3">
-        <div class="card border border-0">
-          <img src="../pictures/movie-wide/<?php echo $sort['MovieId'] ?>.png" class="card-img-top" alt="...">
+      <div class="card border border-0">
+        <img src="../pictures/movie-wide/<?php echo $sort['MovieId'] ?>.png" class="card-img-top" alt="...">
 
-          <div class="card-body-action">
-            <h5 class="card-title-action mb-3">How Film-maker Make: </br><?php echo $sort['Title'] ?></h5>
-            <div class="card-text-action fs-6">
-              <span><?php echo $sort['year'] ?></span> 
-              <span class="rounded p-1 bg-secondary"><?php echo $sort['AgeRating'] ?></span> 
-              <span class="rounded p-1 bg-secondary"><?php echo $sort['GenreName'] ?></span> 
-              <span class="rounded p-1 bg-secondary">$<?php echo $sort['Price'] ?></span>
-              <p><?php echo $sort['Synopsis'] ?></p>
-            </div>
-            <div class="card-btn"><a href="detail.php?movieId=<?= $sort['MovieId'] ?>" class="btn">More Detail</a></div>
+        <div class="card-body-action">
+          <h5 class="card-title-action mb-3">How Film-maker Make: </br><?php echo $sort['Title'] ?></h5>
+          <div class="card-text-action fs-6">
+            <span><?php echo $sort['year'] ?></span> 
+            <span class="rounded p-1 bg-secondary"><?php echo $sort['AgeRating'] ?></span> 
+            <span class="rounded p-1 bg-secondary"><?php echo $sort['GenreName'] ?></span> 
+            <span class="rounded p-1 bg-secondary">$<?php echo $sort['Price'] ?></span>
+            <p><?php echo $sort['Synopsis'] ?></p>
           </div>
+          <div class="card-btn"><a href="detail.php?movieId=<?= $sort['MovieId'] ?>" class="btn">More Detail</a></div>
         </div>
       </div>
+    </div>
 
     <?php
       }
